@@ -5,62 +5,28 @@ export default function Header() {
   const [action, setAction] = useState("");
 
   const openMenu = () => {
-    setAction("right-[0px]");
+    setAction("right-[1px]");
     console.log("erfan");
   };
 
   const closeMenu = () => {
-    setAction("-right-[550px]");
+    setAction("-right-[1000px]");
+
     console.log("asasasa");
   };
   return (
     <>
-      <div className="flex items-center justify-around bg-header">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="xl:w-[50px] mt-6 mb-8 xl:h-[50px] w-[35px] h-[35px] cursor-pointer "
-          onClick={openMenu}
+      <header className=" bg-header px-4 h-16 flex items-center transition-all duration-500 child:transition-all child:duration-500 justify-between lg:hidden">
+        <nav
+          className={`flex   absolute colsAction navigation top-0 ${action}  shadow-normal -right-[1000px] bottom-0  w-[70%] sm:w-[50%] bg-header shadow-xl flex-col gap-5 items-center`}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5"
-          />
-        </svg>
-        <h1 className=" xl:text-[140px] md:text-[80px] mt-4 mb-4 hidden sm:block text-[40px]">HIFashion</h1>
-
-        <ul
-          className={`absolute top-0 md:child:mt-14 p-3 md:p-10 transition-all duration-500 child:mt-3 bottom-0 w-[80%] md:w-[28%]  shadow-2xl bg-header ${action} -right-[800px] sm:text-sm md:text-md xl:text-3xl `}
-        >
-          <li>
-            <a href="#">تمامی محصولات </a>
-          </li>
-          <li>
-            <a href="#"> مقاله ها </a>
-          </li>
-          <li>
-            <a href="#"> مقاله ها </a>
-          </li>
-          <li>
-            <a href="#"> مقاله ها </a>
-          </li>
-          <li>
-            <a href="#"> مقاله ها </a>
-          </li>
-          <li>
-            <a href="#"> مقاله ها </a>
-          </li>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="xl:size-10 size-8  md:w-[24px]  md:h-[24px] absolute -top-1 cursor-pointer left-0"
+            className="size-8 absolute top-2 left-2 cursor-pointer"
             onClick={closeMenu}
           >
             <path
@@ -69,39 +35,91 @@ export default function Header() {
               d="M6 18 18 6M6 6l12 12"
             />
           </svg>
-        </ul>
+          <div className="w-[80%] flex items-center justify-between mt-5">
+            <div className="flex iconOpenMenu closeIcon flex-col gap-1 active child:transition-all child:duration-500 cursor-pointer"></div>
+          </div>
+          <ul className="flex  text-black transition-all duration-700 child:transition-all child:duration-300 text-md w-[80%] child:p-[8px]  child:rounded-[16px] flex-col gap-4 absolute top-20 right-5  font-vazirBlack child-hover:bg-neutral-300  child-hover:text-blue-600  child:w-[100%]">
+            <li>
+              <a href="#" className=" text-black">
+                صفحه اصلی
+              </a>
+            </li>
+            <li className="relative group">
+              <div className="flex justify-between transition-all duration-700 w-[100%] child:transition-all child:duration-500">
+                <a href="#"> فروشگاه </a>
+              </div>
+            </li>
 
-        <div className="flex gap-1 sm:gap-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="xl:w-[50px] xl:h-[50px]  w-[35px] h-[35px]"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-            />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="xl:w-[50px] xl:h-[50px] w-[35px] h-[35px]"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-            />
-          </svg>
-        </div>
-      </div>
+            <li>
+              <a href="#"> دیکشنری </a>
+            </li>
+            <li>
+              <a href="#"> بلاگ </a>
+            </li>
+            <li>
+              <a href="#"> درباره ی ما </a>
+            </li>
+            <li>
+              <a href="#"> تماس با ما </a>
+            </li>
+          </ul>
+          <span className="bg-zinc-400 w-[80%] h-[1px] -mt-12"></span>
+          <div className="flex gap-4 child:text-orange-300 text-gray-100 ml-5 absolute flex-col right-8 bottom-60">
+            <div className="flex gap-3 flex-col ">
+              <a className="font-vazirBold" href="">
+                ورود
+              </a>
+              <a className="font-vazirBold" href="">
+                ثبت نام
+              </a>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+              />
+            </svg>
+          </div>
+          <span className="bg-zinc-400 w-[80%] h-[1px] absolute bottom-[400px]"></span>
+        </nav>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-6 sm:size-10 cursor-pointer"
+          onClick={openMenu}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5"
+          />
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-6 sm:size-10 "
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+          />
+        </svg>
+      </header>
     </>
   );
 }
