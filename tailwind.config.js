@@ -5,8 +5,15 @@ export default {
     extend: {
       fontFamily: {
         gandom: "gandom",
-
       },
+      backgroundColor: {
+        header: "#E7EAEF",
+        line: "#555555",
+      },
+      colors : {
+        lineColor: "#555555",
+      },
+      
     },
   },
   plugins: [
