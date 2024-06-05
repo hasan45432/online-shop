@@ -44,14 +44,14 @@ export const Slider = ({ slides }) => {
         <SwiperSlide>{slides}</SwiperSlide>
         <SwiperSlide>{slides}</SwiperSlide>
         <SwiperSlide>{slides}</SwiperSlide>
+        <SwiperSlide>{slides} </SwiperSlide>
         <SwiperSlide>{slides}</SwiperSlide>
         <SwiperSlide>{slides}</SwiperSlide>
+        <SwiperSlide>{slides} </SwiperSlide>
+        <SwiperSlide>{slides} </SwiperSlide>
         <SwiperSlide>{slides}</SwiperSlide>
-        <SwiperSlide>{slides}</SwiperSlide>
-        <SwiperSlide>{slides}</SwiperSlide>
-        <SwiperSlide>{slides}</SwiperSlide>
-        <SwiperSlide>{slides}</SwiperSlide>
-        <SwiperSlide>{slides}</SwiperSlide>
+        <SwiperSlide>{slides} </SwiperSlide>
+        <SwiperSlide>{slides} </SwiperSlide>
       </Swiper>
     </>
   );

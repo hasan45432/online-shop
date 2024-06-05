@@ -1,7 +1,8 @@
 import React from "react";
 import Product from "../product/Product";
 import { Slider } from "../slider/Slider";
-import Information from "../informaicon/Information";
+import Blog from "../blog/Blog";
+
 import { SliderHeader } from "../sliderHeader/SliderHeader";
 export default function Main() {
   return (
@@ -45,23 +46,17 @@ export default function Main() {
         </div>
         <div className=" container">
           <Slider slides={<Product />} />
-        </div>
-
-        <div className=" bg-neutral-200 h-[400px] sm:h-[500px] w-[100%] mt-10 ">
-          <div className=" text-center p-1">
-            <h2 className="text-4xl md:text-5xl text-black pt-4">HIFashion</h2>
-            <p className="text-[14px] md:text-[14px] break-words lg:text-[19px] mt-3">
-              Making a luxurious lifestyle accessible for a generous group of
-            </p>
-            <p className="text-[14px] md:text-[14px] break-words lg:text-[19px]">
-              women is our daily drive.
-            </p>
-          </div>
-          <div className="grid gap-8 p-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 mt-10 lg:mt-20">
-            <Information />
-            <Information />
-            <Information />
-            <Information />
+          <div className="mt-20">
+            <h2 className="text-center text-[30px] md:text-[60px] mt-[30px]">
+              BLOG
+            </h2>
+            <p className=" w-[180px] md:w-[260px] mx-auto h-[1px] bg-line mt-4 mb-4"></p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              <Blog />
+              <Blog />
+              <Blog />
+              <Blog />
+            </div>
           </div>
         </div>
       </div>
