@@ -51,7 +51,7 @@ export default function Main() {
               BLOG
             </h2>
             <p className=" w-[180px] md:w-[260px] mx-auto h-[1px] bg-line mt-4 mb-4"></p>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
               <Blog />
               <Blog />
               <Blog />
