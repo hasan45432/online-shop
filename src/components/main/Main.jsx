@@ -1,16 +1,14 @@
 import React from "react";
 import Product from "../product/Product";
 import { Slider } from "../slider/Slider";
+import Information from "../informaicon/Information";
+import { SliderHeader } from "../sliderHeader/SliderHeader";
 
 export default function Main() {
   return (
     <>
       <div>
-        <img
-          src="../../../public/img/cbbafce7621f797d710eb1be26e41b7a.png"
-          alt=""
-          className="xl:h-[900px] w-[100%] sm:rounded-br-[100px] mt-0 sm:rounded-bl-[100px] sm:h-[600px] h-[300px]  sm:w-[100%]  bg-center bg-cover"
-        />
+        <SliderHeader />
         <div className=" container mx-auto">
           <div className="flex flex-col items-center ">
             <h2 className="text-center text-[35px] md:text-[70px] mt-[30px] ">
@@ -19,7 +17,9 @@ export default function Main() {
             <p className=" w-[180px] md:w-[260px]  h-[1px] bg-line mt-4 mb-4"></p>
           </div>
 
-          <div className=" grid gap-2 sm:p-2 md:grid-cols-3 grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 mt-4 mb-4 child-hover:shadow-2xl child:transition-all child:duration-500">
+          <div className=" grid  sm:p-2 md:grid-cols-3 grid-cols-2 sm:grid-cols-2  xl:grid-cols-4 mt-4 mb-4 child-hover:shadow-2xl child:transition-all child:duration-500">
+            <Product />
+            <Product />
             <Product />
             <Product />
             <Product />
@@ -42,8 +42,26 @@ export default function Main() {
             <p className="mx-auto w-[120px] md:w-[200px]  h-[1px] bg-line mt-4 mb-4"></p>
           </div>
         </div>
-        <div className=" container ">
+        <div className=" container">
           <Slider slides={<Product />} />
+        </div>
+
+        <div className=" bg-neutral-300 h-[400px] sm:h-[500px] w-[100%] mt-10 ">
+          <div className=" text-center p-1">
+            <h2 className="text-4xl md:text-5xl text-black pt-4">HIFashion</h2>
+            <p className="text-[14px] md:text-[14px] break-words lg:text-[19px] mt-3">
+              Making a luxurious lifestyle accessible for a generous group of
+            </p>
+            <p className="text-[14px] md:text-[14px] break-words lg:text-[19px]">
+              women is our daily drive.
+            </p>
+          </div>
+          <div className="grid gap-8 p-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 mt-10 lg:mt-20">
+            <Information />
+            <Information />
+            <Information />
+            <Information />
+          </div>
         </div>
       </div>
     </>

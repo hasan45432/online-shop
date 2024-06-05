@@ -6,19 +6,16 @@ export default function Header() {
 
   const openMenu = () => {
     setAction("right-[1px]");
-    console.log("erfan");
   };
 
   const closeMenu = () => {
     setAction("-right-[1000px]");
-
-    console.log("asasasa");
   };
   return (
     <>
       <header className=" bg-header px-4 h-16 flex items-center  transition-all duration-500 child:transition-all child:duration-500 justify-between lg:hidden">
         <nav
-          className={`flex   absolute colsAction navigation top-0 ${action}  shadow-normal -right-[1000px] bottom-0  w-[70%] sm:w-[50%] bg-header shadow-xl flex-col gap-5 items-center`}
+          className={`flex  absolute colsAction navigation top-0 ${action}  shadow-normal -right-[1000px] bottom-0  w-[70%] sm:w-[50%] bg-header shadow-xl flex-col gap-5 items-center`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +35,7 @@ export default function Header() {
           <div className="w-[80%] flex items-center justify-between mt-5">
             <div className="flex iconOpenMenu closeIcon flex-col gap-1 active child:transition-all child:duration-500 cursor-pointer"></div>
           </div>
-          <ul className="flex  text-black transition-all duration-700 child:transition-all child:duration-300 text-md w-[80%] child:p-[8px]  child:rounded-[16px] flex-col gap-4 absolute top-20 right-5  font-vazirBlack child-hover:bg-neutral-300  child-hover:text-blue-600  child:w-[100%]">
+          <ul className="flex child:ipad:text-2xl  text-black transition-all duration-700 child:transition-all child:duration-300 text-md w-[80%] child:p-[8px]  child:rounded-[16px] flex-col gap-4 absolute top-20 right-5  font-vazirBlack child-hover:bg-neutral-300  child-hover:text-blue-600  child:w-[100%]">
             <li>
               <a href="#" className=" text-black">
                 صفحه اصلی
@@ -62,33 +59,35 @@ export default function Header() {
             <li>
               <a href="#"> تماس با ما </a>
             </li>
-          </ul>
-          <span className="bg-zinc-400 w-[80%] h-[1px] -mt-12"></span>
-          <div className="flex gap-4 child:text-orange-300 text-gray-100 ml-5 absolute flex-col right-8 bottom-60">
-            <div className="flex gap-3 flex-col ">
+            <li>
               <a className="font-vazirBold" href="">
                 ورود
               </a>
+            </li>
+
+            <li>
               <a className="font-vazirBold" href="">
                 ثبت نام
               </a>
-            </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-              />
-            </svg>
-          </div>
-          <span className="bg-zinc-400 w-[80%] h-[1px] absolute bottom-[400px]"></span>
+            </li>
+
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6 ipad:size-10"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                />
+              </svg>
+            </li>
+          </ul>
         </nav>
         <svg
           xmlns="http://www.w3.org/2000/svg"
