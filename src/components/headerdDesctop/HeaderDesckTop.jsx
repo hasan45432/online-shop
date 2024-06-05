@@ -3,7 +3,7 @@ import React from "react";
 export default function HeaderDesckTop() {
   return (
     <div>
-      <header className="fixed hidden md:flex backdrop-blur-[6px]  text-lg bg-neutral-200 w-[90%] shadow-xl right-0 left-0 mx-auto items-center justify-between rounded-2xl h-16">
+      <header className="fixed z-50 hidden md:flex backdrop-blur-[6px]  text-lg bg-neutral-200 w-[90%] shadow-xl right-0 left-0 mx-auto items-center justify-between rounded-2xl h-16">
         <nav className="flex gap-5 items-center mr-5">
           <div></div>
           <ul className="flex gap-3  child:text-[19px]  text-black/60 font-vazirBlack child-hover:text-blue-500 child:transition-colors duration-300">

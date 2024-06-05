@@ -3,12 +3,13 @@ import Product from "../product/Product";
 import { Slider } from "../slider/Slider";
 import Information from "../informaicon/Information";
 import { SliderHeader } from "../sliderHeader/SliderHeader";
-
 export default function Main() {
   return (
     <>
       <div>
-        <SliderHeader />
+        <div>
+          <SliderHeader />
+        </div>
         <div className=" container mx-auto">
           <div className="flex flex-col items-center ">
             <h2 className="text-center text-[35px] md:text-[70px] mt-[30px] ">
@@ -46,7 +47,7 @@ export default function Main() {
           <Slider slides={<Product />} />
         </div>
 
-        <div className=" bg-neutral-300 h-[400px] sm:h-[500px] w-[100%] mt-10 ">
+        <div className=" bg-neutral-200 h-[400px] sm:h-[500px] w-[100%] mt-10 ">
           <div className=" text-center p-1">
             <h2 className="text-4xl md:text-5xl text-black pt-4">HIFashion</h2>
             <p className="text-[14px] md:text-[14px] break-words lg:text-[19px] mt-3">

@@ -14,7 +14,7 @@ export const SliderHeader = ({ image }) => {
         slidesPerView={1}
         pagination={{ clickable: true }}
         autoplay={{
-          delay: 3000,
+          delay: 4000,
           disableOnInteraction: false,
         }}
       >
@@ -22,7 +22,7 @@ export const SliderHeader = ({ image }) => {
           <img
             src="https://dkstatics-public.digikala.com/digikala-adservice-banners/9c44c1db73014e9088018f1f51e04ce8e31dfb7c_1717238694.gif?x-oss-process=image"
             alt=""
-            className="xl:h-[900px]  w-[100%]  sm:h-[600px] h-[300px]  sm:w-[100%]  bg-center bg-cover"
+            className="xl:h-[900px]  w-[100%]  sm:h-[600px] h-[300px]  sm:w-[100%]  bg-center bg-cover z-40"
           />
         </SwiperSlide>
         <SwiperSlide>

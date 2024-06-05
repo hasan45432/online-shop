@@ -13,9 +13,9 @@ export default function Header() {
   };
   return (
     <>
-      <header className=" bg-header px-4 h-16 flex items-center  transition-all duration-500 child:transition-all child:duration-500 justify-between lg:hidden">
+      <header className=" bg-header  px-4 h-16 flex items-center  transition-all duration-500 child:transition-all child:duration-500 justify-between lg:hidden">
         <nav
-          className={`flex  absolute colsAction navigation top-0 ${action}  shadow-normal -right-[1000px] bottom-0  w-[70%] sm:w-[50%] bg-header shadow-xl flex-col gap-5 items-center`}
+          className={`flex z-50  absolute colsAction navigation top-0 ${action}  shadow-normal -right-[1000px] bottom-0  w-[70%] sm:w-[50%] bg-header shadow-xl flex-col gap-5 items-center`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

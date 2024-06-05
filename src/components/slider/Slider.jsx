@@ -13,12 +13,10 @@ export const Slider = ({ slides }) => {
         spaceBetween={50}
         slidesPerView={1}
         navigation
-        pagination={{ clickable: true }}
         autoplay={{
-          delay: 2000,
+          delay: 2500,
           disableOnInteraction: false,
         }}
- 
         breakpoints={{
           480: {
             slidesPerView: 1,
@@ -37,10 +35,10 @@ export const Slider = ({ slides }) => {
             slidesPerView: 3,
             spaceBetween: 50,
           },
-          1280 : {
+          1280: {
             slidesPerView: 4,
             spaceBetween: 50,
-          }
+          },
         }}
       >
         <SwiperSlide>{slides}</SwiperSlide>
