@@ -3,7 +3,7 @@ import React from "react";
 export default function Product() {
   return (
     <>
-      <div className="w-[160px]  mt-3 h-[220px] mx-auto  sm:w-[240px] sm:h-[300px] md:w-[235px] md:h-[320px] lg:w-[300px] lg:h-[400px]  bg-white rounded-[10px]">
+      <div className="w-[150px]  mt-3 h-[210px] mx-auto  sm:w-[240px] sm:h-[300px] md:w-[235px] md:h-[320px] lg:w-[300px] lg:h-[400px]  bg-white rounded-[10px]">
         <img
           src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
           alt=""

@@ -1,9 +1,14 @@
 import React from "react";
-import Index from "./pages/index/Index";
+import { useRoutes } from "react-router-dom";
+import routes from "./routes";
+
 export default function App() {
+  const newRoutes = useRoutes(routes);
+  console.log(newRoutes);
+
   return (
     <>
-      <Index />
+      <div>{newRoutes}</div>
     </>
   );
 }

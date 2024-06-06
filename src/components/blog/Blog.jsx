@@ -7,9 +7,9 @@ export default function Blog() {
     
         <img
           src="../../../public/img/blog/blog1.png"
-          className="w-[100%] h-[80%]"
+          className="w-[90%] h-[70%] sm:w-[100%] sm:h-[80%]"
         />
-        <p className="md:text-xl">2021 Style Guide: The Biggest Fall Trends</p>
+        <p className="text-[10px] md:text-xl">2021 Style Guide: The Biggest Fall Trends</p>
       </div>
     </>
   );

@@ -35,7 +35,7 @@ export default function Header() {
           <div className="w-[80%] flex items-center justify-between mt-5">
             <div className="flex iconOpenMenu closeIcon flex-col gap-1 active child:transition-all child:duration-500 cursor-pointer"></div>
           </div>
-          <ul className="flex child:ipad:text-2xl  text-black transition-all duration-700 child:transition-all child:duration-300 text-md w-[80%] child:p-[8px]  child:rounded-[16px] flex-col gap-4 absolute top-20 right-5  font-vazirBlack child-hover:bg-neutral-300  child-hover:text-blue-600  child:w-[100%]">
+          <ul className="flex   text-black transition-all duration-700 child:transition-all child:duration-300 text-md w-[80%] child:p-[8px]  child:rounded-[16px] flex-col absolute top-16 gap-2 right-5  font-vazirBlack child-hover:bg-neutral-300  child-hover:text-blue-600  child:w-[100%]">
             <li>
               <a href="#" className=" text-black">
                 صفحه اصلی
