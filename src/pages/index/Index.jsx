@@ -11,7 +11,7 @@ export default function Index() {
           <Header />
         </div>
         <div className=" hidden lg:block">
-          <HeaderDesckTop />
+          <HeaderDesckTop position={"fixed"}/>
         </div>
         <Main />
         <Footer />
