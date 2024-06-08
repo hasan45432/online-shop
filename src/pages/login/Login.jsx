@@ -41,7 +41,7 @@ export default function Login() {
                 />
               </div>
             </div>
-            <a href="" className="text-[20px] md:text-[30px] w-[40%] mt-8 h-[35px] md:h-[50px] border border-neutral-800">Login</a>
+            <a href="" className="text-[20px] hover:bg-neutral-400 transition-all duration-300 md:text-[30px] w-[40%] mt-8 h-[35px] md:h-[50px] border border-neutral-800">Login</a>
           </form>
         </div>
       </div>
