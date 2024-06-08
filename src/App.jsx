@@ -4,7 +4,7 @@ import routes from "./routes";
 
 export default function App() {
   const newRoutes = useRoutes(routes);
-  console.log(newRoutes);
+  
 
   return (
     <>

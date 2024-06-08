@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Scrollbar, Pagination, Navigation, A11y } from "swiper";
+import { EffectFade,Scrollbar, Pagination, Navigation, A11y } from "swiper";
 import { Autoplay } from "swiper";
 
 import "swiper/swiper-bundle.min.css";
@@ -9,9 +9,10 @@ export const SliderHeader = ({ image }) => {
   return (
     <>
       <Swiper
-        modules={[Navigation, Autoplay, Pagination, Scrollbar, A11y]}
+        modules={[Navigation,EffectFade, Autoplay, Pagination, Scrollbar, A11y]}
         spaceBetween={50}
         slidesPerView={1}
+        effect="fade"
         pagination={{ clickable: true }}
         autoplay={{
           delay: 4000,

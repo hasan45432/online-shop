@@ -3,6 +3,7 @@ import Header from "../../components/header/Header";
 import Main from "../../components/main/Main";
 import HeaderDesckTop from "../../components/headerdDesctop/HeaderDesckTop";
 import Footer from "../../components/footer/Footer";
+
 export default function Index() {
   return (
     <>
@@ -11,8 +12,9 @@ export default function Index() {
           <Header />
         </div>
         <div className=" hidden lg:block">
-          <HeaderDesckTop position={"fixed"}/>
+          <HeaderDesckTop position={"fixed"} />
         </div>
+
         <Main />
         <Footer />
       </div>
