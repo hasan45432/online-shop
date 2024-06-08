@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { json } from "react-router-dom";
 
 export const getState = createAsyncThunk("state/getState", async (url) => {
   return fetch(url)
@@ -19,10 +20,14 @@ export const removeState = createAsyncThunk(
 
 export const createState = createAsyncThunk(
   "state/createState",
-  async (url) => {
+  async (url, body) => {
+    console.log(body);
     return fetch(url, {
       method: "POST",
-    });
+      body: JSON.stringify(body),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   }
 );
 
@@ -39,9 +44,7 @@ const slice = createSlice({
   name: "users",
   initialState: [],
   reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(getState.fulfilled, (state, action) => action.payload);
-  },
+  extraReducers: (builder) => {},
 });
 
 export default slice.reducer;

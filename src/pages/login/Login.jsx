@@ -14,9 +14,9 @@ export default function Login() {
       </div>
       <div className=" container mx-auto">
         <div className="mt-20 text-center">
-          <div className="flex justify-center gap-32 child:text-xl child-hover:text-blue-400 child:transition-all child:duration-300">
-            <a href="">REGISTER</a>
-            <a href="">LOGIN</a>
+          <div className="flex justify-around child:text-xl  child:transition-all child:duration-500">
+            <a href="" className="border border-neutral-900 pr-4 pl-4 pt-1 pb-1 hover:bg-neutral-400 hover:text-white">REGISTER</a>
+            <a href="" className="border border-neutral-900 pr-4 pl-4 pt-1 pb-1 hover:bg-neutral-400 hover:text-white">LOGIN</a>
           </div>
           <div className="mt-8 mb-8">
             <h2 className="text-3xl">?Have an account</h2>
@@ -42,7 +42,7 @@ export default function Login() {
                 />
               </div>
             </div>
-            <Link to="/" className="text-[20px] hover:bg-neutral-400 transition-all duration-300 md:text-[30px] w-[40%] mt-8 h-[35px] md:h-[50px] border border-neutral-800">Login</Link>
+            <Link to="#" className="text-[20px] hover:bg-neutral-400 hover:text-white transition-all duration-500 md:text-[30px] w-[40%] mt-8 h-[35px] md:h-[50px] border border-neutral-800">Login</Link>
           </form>
         </div>
       </div>
