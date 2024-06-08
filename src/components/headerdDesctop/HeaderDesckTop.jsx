@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-
+import { Link } from "react-router-dom";
 export default function HeaderDesckTop(props) {
-
   return (
     <div>
       <header
@@ -56,16 +55,12 @@ export default function HeaderDesckTop(props) {
               src="./CoffeeShop-Files//icons/icons8-login-24.png"
               alt=""
             />
-            <a className="hidden lg:block font-vazirBold text-black/60" href="">
-              ورود
-            </a>
+            <Link className="text-black/60 font-vazirBold" to="/login">ورود</Link>
             <p className=" w-[30px] h-[1px] bg-black/60  rotate-90 mt-3"></p>
-            <a
-              className="hidden lg:block font-vazirBold text-black/60  "
-              href=""
-            >
+
+            <Link className="text-black/60   font-vazirBold" to="/register">
               ثبت نام
-            </a>
+            </Link>
           </div>
         </div>
       </header>

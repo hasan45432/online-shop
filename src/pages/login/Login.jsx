@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import HeaderDesckTop from "../../components/headerdDesctop/HeaderDesckTop";
 import Header from "../../components/header/Header";
+import { Link } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 export default function Login() {
   return (
@@ -41,7 +42,7 @@ export default function Login() {
                 />
               </div>
             </div>
-            <a href="" className="text-[20px] hover:bg-neutral-400 transition-all duration-300 md:text-[30px] w-[40%] mt-8 h-[35px] md:h-[50px] border border-neutral-800">Login</a>
+            <Link to="/" className="text-[20px] hover:bg-neutral-400 transition-all duration-300 md:text-[30px] w-[40%] mt-8 h-[35px] md:h-[50px] border border-neutral-800">Login</Link>
           </form>
         </div>
       </div>

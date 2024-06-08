@@ -4,7 +4,6 @@ import Register from "./pages/register/Register";
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/login", element: <Login /> },
-  { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
 ];
 

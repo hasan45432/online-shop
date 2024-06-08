@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 export default function Header() {
   const [action, setAction] = useState("");
 
@@ -60,15 +60,13 @@ export default function Header() {
               <a href="#"> تماس با ما </a>
             </li>
             <li>
-              <a className="font-vazirBold" href="">
-                ورود
-              </a>
+              <Link to="/login">ورود</Link>
             </li>
 
             <li>
-              <a className="font-vazirBold" href="">
+              <Link className="font-vazirBold" to="/register">
                 ثبت نام
-              </a>
+              </Link>
             </li>
 
             <li>
