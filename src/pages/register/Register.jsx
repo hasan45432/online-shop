@@ -1,26 +1,30 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useStore } from "react-redux";
 import { createState } from "../../Redux/store/fetchStor";
+import { getStates } from "../../Redux/store/fetchStor";
+import { removeState } from "../../Redux/store/fetchStor";
 import Inputs from "../../components/inputs/Inputs";
 import HeaderDesckTop from "../../components/headerdDesctop/HeaderDesckTop";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { Link } from "react-router-dom";
 export default function Register() {
-  const dispatch = useDispatch();
+  const [userName, setUserName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const addNewUser = (e) => {
-    e.preventDefault();
-    let body = {
-      email: "John@gmail.com",
-      username: "johnd",
-      password: "m38rmF$",
-      name: {
-        firstname: "John",
-        lastname: "Doe",
-      },
-    };
-  };
+  useEffect(() => {
+    fetch("http://localhost:4000/v1/courses")
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
 
   return (
     <>
@@ -57,36 +61,38 @@ export default function Register() {
               className={"form-control text-left"}
               id={"inputEmail4"}
               placeholder={"userName"}
+              onUserName={(e) => setUserName(e)}
             />
             <Inputs
               type={"text"}
               className={"form-control text-left"}
               id={"inputEmail4"}
               placeholder={"firstName"}
+              onFirstName={(e) => setFirstName(e)}
             />
             <Inputs
               type={"text"}
               className={"form-control text-left"}
               id={"inputEmail4"}
               placeholder={"lastName"}
+              onLastName={(e) => setLastName(e)}
             />
             <Inputs
               type={"text"}
               className={"form-control text-left"}
               id={"inputEmail4"}
               placeholder={"email"}
+              onEmail={(e) => setEmail(e)}
             />
             <Inputs
               type={"text"}
               className={"form-control text-left"}
               id={"inputEmail4"}
               placeholder={"password"}
+              onPassword={(e) => setPassword(e)}
             />
           </form>
-          <button
-            onClick={addNewUser}
-            className="text-[20px] hover:bg-neutral-400 hover:text-white  transition-all duration-500 mx-auto md:text-[30px] w-[40%] mt-8 h-[35px] md:h-[50px] border border-neutral-800"
-          >
+          <button className="text-[20px] hover:bg-neutral-400 hover:text-white  transition-all duration-500 mx-auto md:text-[30px] w-[40%] mt-8 h-[35px] md:h-[50px] border border-neutral-800">
             Login
           </button>
         </div>
