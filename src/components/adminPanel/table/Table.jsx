@@ -3,8 +3,8 @@ import React from "react";
 export default function Table() {
   return (
     <>
-      <div className=" flex  items-center justify-end 2xl:pl-[100px] xl:pl-[110px] lg:pl-[20px] mt-4">
-        <table className=" table overflow-x-auto lg:w-[70%] xl:w-[75%] 2xl:w-[80%]">
+      <div className=" flex  items-center justify-end mt-16 lg:p-4  ">
+        <table className=" table overflow-x-auto w-[100%]">
           <thead>
             <tr>
               <th>شناسه</th>
