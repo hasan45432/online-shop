@@ -1,24 +1,34 @@
 import React from "react";
 
 export default function HeaderDesktop() {
+
   return (
     <>
-      <div>
-        <ul>
+      <div className="">
+        <ul className=" absolute child-hover:bg-neutral-400 child-hover:text-white child:w-[100%] child:transition-all shadow-2xl child:duration-500 child:p-2 child:h-[50px] child:rounded-[10px]  top-0 bottom-0 right-0 p-6 flex flex-col gap-6 bg-neutral-200 w-[250px]">
           <li className="flex items-center">
             <svg
               viewBox="0 0 24 24"
               fill="currentColor"
               height="1.5em"
               width="1.5em"
+              className="ml-2"
             >
               <path fill="none" d="M0 0h24v24H0z" />
               <path d="M12 14v8H4a8 8 0 018-8zm0-1c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm9 4h1v5h-8v-5h1v-1a3 3 0 016 0v1zm-2 0v-1a1 1 0 00-2 0v1h2z" />
             </svg>
-            <a href="">پروفایل مدیر</a>
+            <a href="" className="w-[100%]">
+              پروفایل مدیر
+            </a>
           </li>
           <li className="flex items-center">
-            <svg fill="none" viewBox="0 0 24 24" height="1.5em" width="1.5em">
+            <svg
+              fill="none"
+              className="ml-2"
+              viewBox="0 0 24 24"
+              height="1.5em"
+              width="1.5em"
+            >
               <path
                 fill="currentColor"
                 fillRule="evenodd"
@@ -26,7 +36,9 @@ export default function HeaderDesktop() {
                 clipRule="evenodd"
               />
             </svg>
-            <a href="">محصولات</a>
+            <a href="" className="w-[100%]">
+              محصولات
+            </a>
           </li>
           <li className="flex items-center">
             <svg
@@ -34,10 +46,13 @@ export default function HeaderDesktop() {
               viewBox="0 0 16 16"
               height="1.5em"
               width="1.5em"
+              className="ml-2"
             >
               <path d="M1.5 0A1.5 1.5 0 000 1.5v2A1.5 1.5 0 001.5 5h13A1.5 1.5 0 0016 3.5v-2A1.5 1.5 0 0014.5 0h-13zm1 2h3a.5.5 0 010 1h-3a.5.5 0 010-1zm9.927.427A.25.25 0 0112.604 2h.792a.25.25 0 01.177.427l-.396.396a.25.25 0 01-.354 0l-.396-.396zM0 8a2 2 0 012-2h12a2 2 0 012 2v5a2 2 0 01-2 2H2a2 2 0 01-2-2V8zm1 3v2a1 1 0 001 1h12a1 1 0 001-1v-2H1zm14-1V8a1 1 0 00-1-1H2a1 1 0 00-1 1v2h14zM2 8.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0 4a.5.5 0 01.5-.5h6a.5.5 0 010 1h-6a.5.5 0 01-.5-.5z" />
             </svg>
-            <a href="">منوها</a>
+            <a href="" className="w-[100%]">
+              منوها
+            </a>
           </li>
           <li className="flex items-center">
             <svg
@@ -48,6 +63,7 @@ export default function HeaderDesktop() {
               stroke="currentColor"
               height="1.5em"
               width="1.5em"
+              className="ml-2"
             >
               <path
                 strokeLinecap="round"
@@ -56,7 +72,9 @@ export default function HeaderDesktop() {
               />
             </svg>
 
-            <a href="">کاربران</a>
+            <a href="" className="w-[100%]">
+              کاربران
+            </a>
           </li>
           <li className="flex items-center">
             <svg
@@ -65,10 +83,13 @@ export default function HeaderDesktop() {
               fill="currentColor"
               height="1.5em"
               width="1.5em"
+              className="ml-2"
             >
               <path d="M13.991 13h-4a1 1 0 000 2h4a1 1 0 000-2zm-4-2h1a1 1 0 000-2h-1a1 1 0 000 2zm6-1V9a4.004 4.004 0 00-4-4h-2a5.006 5.006 0 00-5 5v4a5.006 5.006 0 005 5h4a5.006 5.006 0 005-5v-1a3.005 3.005 0 00-3-3zm0 0v.001h-1zm1 4a3.003 3.003 0 01-3 3h-4a3.003 3.003 0 01-3-3v-4a3.003 3.003 0 013-3h2a2.003 2.003 0 012 2v1a2.003 2.003 0 002 2 1 1 0 011 1zm3-13h-16a3.003 3.003 0 00-3 3v16a3.003 3.003 0 003 3h16a3.003 3.003 0 003-3V4a3.003 3.003 0 00-3-3zm1 19a1 1 0 01-1 1h-16a1 1 0 01-1-1V4a1 1 0 011-1h16a1 1 0 011 1z" />
             </svg>
-            <a href="">مقاله ها</a>
+            <a href="" className="w-[100%]">
+              مقاله ها
+            </a>
           </li>
           <li className="flex items-center">
             <svg
@@ -76,11 +97,14 @@ export default function HeaderDesktop() {
               fill="currentColor"
               height="1.5em"
               width="1.5em"
+              className="ml-2"
             >
               <path fill="none" d="M0 0h24v24H0z" />
               <path d="M20 22H4a1 1 0 01-1-1V3a1 1 0 011-1h16a1 1 0 011 1v18a1 1 0 01-1 1zm-1-2V4H5v16h14zM7 6h4v4H7V6zm0 6h10v2H7v-2zm0 4h10v2H7v-2zm6-9h4v2h-4V7z" />
             </svg>
-            <a href="">دسته بندی</a>
+            <a href="" className="w-[100%] ">
+              دسته بندی
+            </a>
           </li>
         </ul>
       </div>
