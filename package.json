@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.1",
     "bootstrap": "^5.1.3",

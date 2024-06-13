@@ -19,7 +19,7 @@ export default function Main() {
             <p className=" w-[180px] md:w-[260px]  h-[1px] bg-line mt-4 mb-4"></p>
           </div>
 
-          <div className=" grid  sm:p-2 md:grid-cols-3 grid-cols-2 sm:grid-cols-2  xl:grid-cols-4 mt-4 mb-4 child-hover:shadow-2xl child:transition-all child:duration-500">
+          <div className=" grid sm:p-2 md:grid-cols-3 grid-cols-2 sm:grid-cols-2  xl:grid-cols-4 mt-4 mb-4 child-hover:shadow-2xl child:transition-all child:duration-500">
             <Product />
             <Product />
             <Product />

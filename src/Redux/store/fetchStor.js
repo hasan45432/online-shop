@@ -5,14 +5,25 @@ import {
 } from "@reduxjs/toolkit";
 import { json } from "react-router-dom";
 
-export const getStates = createAsyncThunk("state/getState", async (url) => {
-  return fetch(url)
-    .then((res) => res.json())
+const adminToken = JSON.parse(localStorage.getItem("admin"));
+
+export const getStates = createAsyncThunk("state/getStates", async (url) => {
+  return fetch(url, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${adminToken.token}`,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+      return res.json();
+    })
     .then((data) => {
+      console.log(url);
+      console.log(data);
       return data;
     });
 });
-
 export const removeState = createAsyncThunk(
   "state/removeState",
   async (url) => {
@@ -34,29 +45,15 @@ export const removeState = createAsyncThunk(
 export const createState = createAsyncThunk(
   "state/createState",
   async (url) => {
-    console.log(url);
     return fetch(url, {
       method: "POST",
       body: JSON.stringify({
-        email: "Jhyoasdasdadshn@gmail.com",
-        username: "asdasdasd",
-        password: "dsasdasdasd",
-        name: {
-          firstname: "Joasdashn",
-          lastname: "Doasdasde",
-        },
-        address: {
-          city: "kilsadcoole",
-          street: "7835 new road",
-          number: 3,
-          zipcode: "12946-3874",
-          geolocation: {
-            lat: "-37.3459",
-            long: "81.1496",
-          },
-        },
-        phone: "1-570-266-7033",
+        identifier: "amin_saeedi",
+        password: "123456789",
       }),
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
       .then((res) => {
         console.log(res);
@@ -64,6 +61,7 @@ export const createState = createAsyncThunk(
       })
       .then((data) => {
         console.log(data);
+        localStorage.setItem("admin", JSON.stringify(data.accessToken));
         return data;
       });
   }
@@ -87,7 +85,6 @@ const slice = createSlice({
       return action.payload;
     });
     builder.addCase(createState.fulfilled, (state, action) => {
-      console.log(action);
       return action.payload;
     });
     builder.addCase(removeState.fulfilled, (state, action) => {
