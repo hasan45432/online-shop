@@ -18,33 +18,6 @@ const FormDataProduct = () => {
     event.preventDefault();
     const localStorageData = JSON.parse(localStorage.getItem("admin"));
     let newFormData = new FormData();
-
-    newFormData.append("name", name);
-    newFormData.append("description", description);
-    newFormData.append("shortName", shortName);
-    newFormData.append("categoryID", categoryID);
-    newFormData.append("price", price);
-    newFormData.append("support", support);
-    newFormData.append("status", status);
-    newFormData.append("cover", cover);
-
-    fetch("http://localhost:4000/v1/courses", {
-      method: "POST",
-      body: newFormData,
-      headers: {
-        Authorization: `Bearer ${localStorageData}`,
-      },
-    })
-      .then((res) => {
-        console.log(res);
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-        return data;
-      });
-    console.log(localStorageData);
-    console.log(newFormData);
   };
 
   useEffect(() => {
@@ -76,14 +49,12 @@ const FormDataProduct = () => {
                 className={"form-control placeholder-text text-[12px]"}
                 id={"inputEmail4"}
                 placeholder={"لطفا نام محصول را وارد کنید"}
-                onUserName={(e) => setName(e)}
               />
               <Inputs
                 type={"text"}
                 className={"form-control placeholder-text text-[12px]"}
                 id={"inputEmail4"}
                 placeholder={"لطفا توضیحات محصول را وارد کنید"}
-                onFirstName={(e) => setDescription(e)}
               />
             </div>
 

@@ -6,15 +6,10 @@ export default function Inputs(props) {
       props.onPassword(e.target.value);
     } else if (props.onEmail) {
       props.onEmail(e.target.value);
-    } else if (props.onUserName) {
-      props.onUserName(e.target.value);
-    } else if (props.onFirstName) {
-      props.onFirstName(e.target.value);
-    } else if (props.onLastName) {
-      props.onLastName(e.target.value);
+    } else if (props.onText) {
+      props.onText(e.target.value);
     }
   };
-
 
   return (
     <>
