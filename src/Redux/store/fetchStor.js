@@ -1,11 +1,8 @@
 import {
   createSlice,
   createAsyncThunk,
-  legacy_createStore,
 } from "@reduxjs/toolkit";
 import { json } from "react-router-dom";
-
-const adminToken = JSON.parse(localStorage.getItem("admin"));
 
 export const getStates = createAsyncThunk("state/getStates", async (url) => {
   return fetch(url, {
@@ -42,16 +39,19 @@ export const removeState = createAsyncThunk(
   }
 );
 
+const adminToken = JSON.parse(localStorage.getItem("admin"));
+
 export const createState = createAsyncThunk(
   "state/createState",
-  async (url) => {
-    return fetch(url, {
+  async (arg) => {
+    console.log(arg.formDatas);
+    console.log(adminToken);
+
+    return fetch(arg.url, {
       method: "POST",
-      body: JSON.stringify({
-        identifier: "amin_saeedi",
-        password: "123456789",
-      }),
+      body: arg.formDatas,
       headers: {
+        Authorization: `Bearer ${adminToken}`,
         "Content-Type": "application/json",
       },
     })
@@ -61,7 +61,6 @@ export const createState = createAsyncThunk(
       })
       .then((data) => {
         console.log(data);
-        localStorage.setItem("admin", JSON.stringify(data.accessToken));
         return data;
       });
   }

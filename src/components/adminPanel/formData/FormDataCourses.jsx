@@ -1,37 +1,58 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import Inputs from "../../inputs/Inputs";
-import { useDispatch, useStore } from "react-redux";
-import { getStates, createState } from "../../../Redux/store/fetchStor";
-export default function FormData() {
+import { createState } from "../../../Redux/store/fetchStor";
+
+const FormDataProduct = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [support, setSupport] = useState("");
   const [cover, setCover] = useState("");
   const [categoryID, setCategoryID] = useState("");
+  const shortName = "bootstrap";
+  const status = "start";
 
   const dispatch = useDispatch();
+  const addNewProduct = async (event) => {
+    event.preventDefault();
+    const localStorageData = JSON.parse(localStorage.getItem("admin"));
+    let newFormData = new FormData();
 
-  const addNewProduct = (e) => {
-    e.preventDefault();
-    let body = {
-      name,
-      description,
-      price,
-      support,
-      cover,
-      categoryID,
-    };
-    dispatch(createState("http://localhost:4000/v1/auth/login"));
+    newFormData.append("name", name);
+    newFormData.append("description", description);
+    newFormData.append("shortName", shortName);
+    newFormData.append("categoryID", categoryID);
+    newFormData.append("price", price);
+    newFormData.append("support", support);
+    newFormData.append("status", status);
+    newFormData.append("cover", cover);
+
+    fetch("http://localhost:4000/v1/courses", {
+      method: "POST",
+      body: newFormData,
+      headers: {
+        Authorization: `Bearer ${localStorageData}`,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
+    console.log(localStorageData);
+    console.log(newFormData);
   };
 
   useEffect(() => {
-    const adminPanel = JSON.parse(localStorage.getItem("admin"));
-    console.log(adminPanel);
+    const admin = JSON.parse(localStorage.getItem("admin"));
     fetch("http://localhost:4000/v1/users", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${adminPanel}`,
+        Authorization: `Bearer ${admin}`,
       },
     })
       .then((res) => {
@@ -75,7 +96,7 @@ export default function FormData() {
                 onEmail={(e) => setSupport(e)}
               />
               <Inputs
-                type={"text"}
+                type={"number"}
                 className={"form-control placeholder-text text-[12px]"}
                 id={"inputEmail4"}
                 placeholder={"لطفا قیمت محصول را وارد کنید"}
@@ -87,10 +108,12 @@ export default function FormData() {
                   className="w-[120px]"
                   onChange={(e) => setCategoryID(e.target.value)}
                 >
-                  <option value="option1"> Option1</option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
-                  <option value="option4">Option 4</option>
+                  <option value="برنامه نویس فرانت اند">
+                    برنامه نویس فرانت اند
+                  </option>
+                  <option value="optionasdasdasd">برنامه نویس بک اند </option>
+                  <option value="optionasdasdasd">برنامه نویس فلاتر</option>
+                  <option value="optionasdasdasd">پایتون</option>
                 </select>
               </div>
               <div className="md:flex pr-16  gap-2 mt-2">
@@ -100,7 +123,7 @@ export default function FormData() {
                   id="image"
                   name="image"
                   accept="image/*"
-                  onChange={(e) => setCover(e.target.files)}
+                  onChange={(e) => setCover(e.target.files[0])}
                 ></input>
               </div>
               <button
@@ -115,4 +138,6 @@ export default function FormData() {
       </div>
     </>
   );
-}
+};
+
+export default FormDataProduct;

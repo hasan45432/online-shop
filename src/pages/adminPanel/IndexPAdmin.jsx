@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import HeaderDesktop from "../../components/adminPanel/headerDesktop/HeaderDesktop";
+import { Outlet } from "react-router-dom";
 import Table from "../../components/adminPanel/table/Table";
 import HeaderMobile from "../../components/adminPanel/headerMobile/HeaderMobile";
-import FormData from "../../components/adminPanel/formData/FormData";
-export default function AdminPanel() {
 
+export default function IndexPAdmin() {
   return (
     <>
       <div className=" lg:hidden">
@@ -14,8 +14,9 @@ export default function AdminPanel() {
         <div className=" hidden lg:block">
           <HeaderDesktop />
         </div>
+
         <div className="w-[100%]">
-          <FormData />
+          <Outlet />
           <Table />
         </div>
       </div>

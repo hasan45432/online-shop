@@ -3,7 +3,7 @@ import React from "react";
 export default function Product() {
   return (
     <>
-      <div className="w-[140px]  mt-3 h-[200px]  mx-auto sm:w-[240px] truncate	 sm:h-[300px] md:w-[235px] md:h-[320px] lg:w-[300px] lg:h-[400px]  bg-white rounded-[5px]">
+      <div className="w-[140px]  h-[200px] mx-auto sm:w-[240px] truncate	 sm:h-[300px] md:w-[235px] md:h-[320px] lg:w-[300px] lg:h-[400px]  bg-white rounded-[5px]">
         <img
           src="https://cdn.dummyjson.com/products/images/fragrances/Chanel%20Coco%20Noir%20Eau%20De/1.png"
           alt=""
