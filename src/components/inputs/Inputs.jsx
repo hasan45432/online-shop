@@ -2,12 +2,8 @@ import React, { useEffect } from "react";
 
 export default function Inputs(props) {
   const addNewUser = (e) => {
-    if (props.onPassword) {
+    if (props.onText) {
       props.onPassword(e.target.value);
-    } else if (props.onEmail) {
-      props.onEmail(e.target.value);
-    } else if (props.onText) {
-      props.onText(e.target.value);
     }
   };
 

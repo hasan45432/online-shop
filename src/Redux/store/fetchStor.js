@@ -1,11 +1,8 @@
-import {
-  createSlice,
-  createAsyncThunk,
-} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { json } from "react-router-dom";
 
-export const getStates = createAsyncThunk("state/getStates", async (url) => {
-  return fetch(url, {
+export const getStates = createAsyncThunk("state/getStates", async (arg) => {
+  return fetch(arg.url, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${adminToken.token}`,
@@ -16,7 +13,6 @@ export const getStates = createAsyncThunk("state/getStates", async (url) => {
       return res.json();
     })
     .then((data) => {
-      console.log(url);
       console.log(data);
       return data;
     });
@@ -44,12 +40,12 @@ const adminToken = JSON.parse(localStorage.getItem("admin"));
 export const createState = createAsyncThunk(
   "state/createState",
   async (arg) => {
-    console.log(arg.formDatas);
+    console.log(arg.body);
     console.log(adminToken);
 
     return fetch(arg.url, {
       method: "POST",
-      body: arg.formDatas,
+      body: JSON.stringify(arg.body),
       headers: {
         Authorization: `Bearer ${adminToken}`,
         "Content-Type": "application/json",
@@ -81,6 +77,7 @@ const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getStates.fulfilled, (state, action) => {
+      console.log(action);
       return action.payload;
     });
     builder.addCase(createState.fulfilled, (state, action) => {

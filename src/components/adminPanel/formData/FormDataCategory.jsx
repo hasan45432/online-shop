@@ -1,8 +1,22 @@
 import React, { useState } from "react";
 import Inputs from "../../inputs/Inputs";
+import { useDispatch } from "react-redux";
+import { createState, getStates } from "../../../Redux/store/fetchStor";
 export default function FormDataCategory() {
   const [nameCategory, setNameCategory] = useState("");
   const [titleCategory, setTitleCategory] = useState("");
+
+  const dispatch = useDispatch();
+
+  const addNewCategory = (e) => {
+    e.preventDefault();
+    let body = {
+      name: nameCategory,
+      title: titleCategory,
+    };
+    let url = "http://localhost:4000/v1/category";
+    dispatch(getStates({ url }));
+  };
 
   return (
     <>
@@ -23,6 +37,12 @@ export default function FormDataCategory() {
               placeholder={"توضحیات ی دسته بندی محصول را وارد کنید "}
               onText={(e) => setTitleCategory(e)}
             />
+            <button
+              onClick={addNewCategory}
+              className="mt-2 hover:bg-neutral-400 transition-all duration-300 rounded-[6px] hover:text-white md:ml-[230px] border pr-6 pl-6  pb-1"
+            >
+              افزودن
+            </button>
           </div>
         </form>
       </div>

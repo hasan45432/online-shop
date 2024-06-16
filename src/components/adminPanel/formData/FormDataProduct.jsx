@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useStore } from "react-redux";
 import Inputs from "../../inputs/Inputs";
-import { createState } from "../../../Redux/store/fetchStor";
+import { createState, getStates } from "../../../Redux/store/fetchStor";
 
 const FormDataProduct = () => {
-  const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [support, setSupport] = useState("");
   const [cover, setCover] = useState("");
@@ -13,6 +13,7 @@ const FormDataProduct = () => {
   const shortName = "bootstrap";
   const status = "start";
 
+  const stor = useStore();
   const dispatch = useDispatch();
   const addNewProduct = async (event) => {
     event.preventDefault();
@@ -21,21 +22,11 @@ const FormDataProduct = () => {
   };
 
   useEffect(() => {
-    const admin = JSON.parse(localStorage.getItem("admin"));
-    fetch("http://localhost:4000/v1/users", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${admin}`,
-      },
-    })
-      .then((res) => {
-        console.log(res);
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-        return data;
-      });
+    let url = "http://localhost:4000/v1/category";
+    dispatch(getStates({ url }));
+    let getCategory = stor;
+
+    console.log(getCategory);
   }, []);
 
   return (
@@ -49,12 +40,14 @@ const FormDataProduct = () => {
                 className={"form-control placeholder-text text-[12px]"}
                 id={"inputEmail4"}
                 placeholder={"لطفا نام محصول را وارد کنید"}
+                onText={(e) => setName(e)}
               />
               <Inputs
                 type={"text"}
                 className={"form-control placeholder-text text-[12px]"}
                 id={"inputEmail4"}
                 placeholder={"لطفا توضیحات محصول را وارد کنید"}
+                onText={(e) => setDescription(e)}
               />
             </div>
 
@@ -64,14 +57,14 @@ const FormDataProduct = () => {
                 className={"form-control placeholder-text text-[12px]"}
                 id={"inputEmail4"}
                 placeholder={"نحوه ی پشتبانی محصول را وارد کنید "}
-                onEmail={(e) => setSupport(e)}
+                onText={(e) => setSupport(e)}
               />
               <Inputs
                 type={"number"}
                 className={"form-control placeholder-text text-[12px]"}
                 id={"inputEmail4"}
                 placeholder={"لطفا قیمت محصول را وارد کنید"}
-                onPassword={(e) => setPrice(e)}
+                onText={(e) => setPrice(e)}
               />
               <div className="md:flex pl-20 gap-2">
                 <p> انتخاب دسته بندی:</p>
