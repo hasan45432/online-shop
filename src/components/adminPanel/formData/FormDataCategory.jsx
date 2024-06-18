@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Inputs from "../../inputs/Inputs";
 import { useDispatch } from "react-redux";
 import { createState, getStates } from "../../../Redux/store/fetchStor";
@@ -15,14 +15,14 @@ export default function FormDataCategory() {
       title: titleCategory,
     };
     let url = "http://localhost:4000/v1/category";
-    dispatch(getStates({ url }));
+    dispatch(createState({ url, body }));
   };
 
   return (
     <>
       <div className="mt-10">
-        <form className="flex flex-col gap-4 xl:flex 2xl:flex-row w-[100%]">
-          <div className="w-[50%] mx-auto flex flex-col items-center gap-4">
+        <form>
+          <div className="w-[100%] xl:w-[70%] mx-auto flex flex-col xl:flex xl:flex-rows items-center gap-4">
             <Inputs
               type={"text"}
               className={"form-control placeholder-text text-[12px]"}
@@ -39,7 +39,7 @@ export default function FormDataCategory() {
             />
             <button
               onClick={addNewCategory}
-              className="mt-2 hover:bg-neutral-400 transition-all duration-300 rounded-[6px] hover:text-white md:ml-[230px] border pr-6 pl-6  pb-1"
+              className="mt-2 hover:bg-neutral-400 mx-auto transition-all duration-300 rounded-[6px] hover:text-white md:ml-[230px] border pr-6 pl-6  pb-1"
             >
               افزودن
             </button>

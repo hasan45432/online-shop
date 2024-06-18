@@ -4,29 +4,50 @@ import Inputs from "../../inputs/Inputs";
 import { createState, getStates } from "../../../Redux/store/fetchStor";
 
 const FormDataProduct = () => {
-  const [description, setDescription] = useState("");
   const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
   const [support, setSupport] = useState("");
-  const [cover, setCover] = useState("");
-  const [categoryID, setCategoryID] = useState("");
-  const shortName = "bootstrap";
-  const status = "start";
+  const [cover, setCover] = useState({});
+  const [categoryID, setCategoryID] = useState("666d8334290441cd168cf4f1");
+  const [status, setStatus] = useState("");
+  const [shortName, setShortName] = useState("");
 
-  const stor = useStore();
+  const [categories, setCategories] = useState([]);
+
+  const store = useStore();
+
   const dispatch = useDispatch();
+
   const addNewProduct = async (event) => {
     event.preventDefault();
-    const localStorageData = JSON.parse(localStorage.getItem("admin"));
-    let newFormData = new FormData();
+
+    let newFormData = await new FormData();
+
+    newFormData.append("name", name);
+    newFormData.append("description", description);
+    newFormData.append("price", price);
+    newFormData.append("support", support);
+    newFormData.append("cover", cover);
+    newFormData.append("categoryID", categoryID);
+    newFormData.append("status", status);
+    newFormData.append("shortName", shortName);
+
+    let url = "http://localhost:4000/v1/courses";
+
+    dispatch(createState({ url, newFormData }));
   };
 
   useEffect(() => {
-    let url = "http://localhost:4000/v1/category";
-    dispatch(getStates({ url }));
-    let getCategory = stor;
+    const fetchData = async () => {
+      let url = "http://localhost:4000/v1/category";
+      await dispatch(getStates({ url }));
 
-    console.log(getCategory);
+      let categoryStore = store.getState().fetchStor;
+      setCategories(categoryStore);
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -49,6 +70,13 @@ const FormDataProduct = () => {
                 placeholder={"لطفا توضیحات محصول را وارد کنید"}
                 onText={(e) => setDescription(e)}
               />
+              <Inputs
+                type={"text"}
+                className={"form-control placeholder-text text-[12px]"}
+                id={"inputEmail4"}
+                placeholder={"لطفا url محصول را وارد کنید"}
+                onText={(e) => setShortName(e)}
+              />
             </div>
 
             <div className="w-[100%] flex flex-col items-center  gap-4">
@@ -59,12 +87,11 @@ const FormDataProduct = () => {
                 placeholder={"نحوه ی پشتبانی محصول را وارد کنید "}
                 onText={(e) => setSupport(e)}
               />
-              <Inputs
-                type={"number"}
-                className={"form-control placeholder-text text-[12px]"}
-                id={"inputEmail4"}
-                placeholder={"لطفا قیمت محصول را وارد کنید"}
-                onText={(e) => setPrice(e)}
+              <input
+                type="number"
+                placeholder="لطفا قیمت محصول  را وارد کنید "
+                className="form-control placeholder-text text-[12px] w-[50%]"
+                onInput={(e) => setPrice(e.target.value)}
               />
               <div className="md:flex pl-20 gap-2">
                 <p> انتخاب دسته بندی:</p>
@@ -72,12 +99,11 @@ const FormDataProduct = () => {
                   className="w-[120px]"
                   onChange={(e) => setCategoryID(e.target.value)}
                 >
-                  <option value="برنامه نویس فرانت اند">
-                    برنامه نویس فرانت اند
-                  </option>
-                  <option value="optionasdasdasd">برنامه نویس بک اند </option>
-                  <option value="optionasdasdasd">برنامه نویس فلاتر</option>
-                  <option value="optionasdasdasd">پایتون</option>
+                  {categories.map((category) => (
+                    <option key={category._id} value={category._id}>
+                      {category.name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="md:flex pr-16  gap-2 mt-2">
@@ -90,9 +116,30 @@ const FormDataProduct = () => {
                   onChange={(e) => setCover(e.target.files[0])}
                 ></input>
               </div>
+              <div className="ml-[116px]">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="radiobutton"
+                  value="start"
+                  onChange={(e) => setStatus(e.target.value)}
+                />
+                <label className="ml-6" htmlFor="option1">
+                  در حال فروش
+                </label>
+                <input
+                  type="radio"
+                  id="option2"
+                  name="radiobutton"
+                  value="presell"
+                  onChange={(e) => setStatus(e.target.value)}
+                />
+                <label htmlFor="option2">فروخته شده </label>
+              </div>
+
               <button
                 onClick={addNewProduct}
-                className="mt-2 hover:bg-neutral-400 transition-all duration-300 rounded-[6px] hover:text-white md:ml-[230px] border pr-6 pl-6  pb-1"
+                className="mt-2 hover:bg-neutral-400 transition-all duration-300 rounded-[6px] hover:text-white md:ml-[240px] border pr-6 pl-6  pb-1"
               >
                 افزودن
               </button>

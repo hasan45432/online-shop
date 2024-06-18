@@ -40,16 +40,18 @@ const adminToken = JSON.parse(localStorage.getItem("admin"));
 export const createState = createAsyncThunk(
   "state/createState",
   async (arg) => {
-    console.log(arg.body);
-    console.log(adminToken);
-
     return fetch(arg.url, {
       method: "POST",
-      body: JSON.stringify(arg.body),
-      headers: {
-        Authorization: `Bearer ${adminToken}`,
-        "Content-Type": "application/json",
-      },
+      body: arg.body ? JSON.stringify(arg.body) : arg.newFormData,
+
+      headers: arg.body
+        ? {
+            Authorization: `Bearer ${adminToken}`,
+            "Content-Type": "application/json",
+          }
+        : {
+            Authorization: `Bearer ${adminToken}`,
+          },
     })
       .then((res) => {
         console.log(res);
@@ -77,7 +79,6 @@ const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getStates.fulfilled, (state, action) => {
-      console.log(action);
       return action.payload;
     });
     builder.addCase(createState.fulfilled, (state, action) => {

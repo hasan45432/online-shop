@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 
 export default function Inputs(props) {
-  const addNewUser = (e) => {
+ 
+  const add = (e) => {
     if (props.onText) {
-      props.onPassword(e.target.value);
+      props.onText(e.target.value);
+   
     }
   };
 
@@ -15,7 +17,7 @@ export default function Inputs(props) {
           className={props.className}
           id={props.id}
           placeholder={props.placeholder}
-          onInput={addNewUser}
+          onInput={add}
         />
       </div>
     </>

@@ -5,9 +5,9 @@ export default function Product() {
     <>
       <div className="w-[140px]  h-[200px] mx-auto sm:w-[240px] truncate	 sm:h-[300px] md:w-[235px] md:h-[320px] lg:w-[300px] lg:h-[400px]  bg-white rounded-[5px]">
         <img
-          src="https://cdn.dummyjson.com/products/images/fragrances/Chanel%20Coco%20Noir%20Eau%20De/1.png"
+          src="../../../public/img/blog/blog3.png"
           alt=""
-          className="w-[100%] h-[80%] p-3"
+          className="w-[100%] h-[80%] "
         />
         <div className="flex flex-col items-center">
           <p className="text-[10px] sm:text-[15px]   custom:text-14 md:text-[14px]  lg:text-[19px]">
