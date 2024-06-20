@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Inputs from "../../inputs/Inputs";
-import { useDispatch } from "react-redux";
-import { createState, getStates } from "../../../Redux/store/fetchStor";
+import { useDispatch, useStore } from "react-redux";
+import {
+  createState,
+  getStates,
+  removeState,
+  updateState,
+} from "../../../Redux/store/fetchStor";
+import swal from "sweetalert";
+
 export default function FormDataCategory() {
   const [nameCategory, setNameCategory] = useState("");
   const [titleCategory, setTitleCategory] = useState("");
+  const [categories, setCategories] = useState([]);
 
   const dispatch = useDispatch();
+  const store = useStore();
 
   const addNewCategory = (e) => {
     e.preventDefault();
@@ -18,6 +27,62 @@ export default function FormDataCategory() {
     dispatch(createState({ url, body }));
   };
 
+  const fetchData = async () => {
+    let url = "http://localhost:4000/v1/category";
+    await dispatch(getStates({ url }));
+
+    let productStore = store.getState().fetchStor;
+    setCategories(productStore);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const removeCategory = (e, id) => {
+    console.log(id);
+    e.preventDefault();
+    swal({
+      title: "ایا از حذف این دسته بندی اطمینان دارید؟",
+      icon: "warning",
+      buttons: ["نه", "اره"],
+    }).then(async (res) => {
+      if (res) {
+        let url = `http://localhost:4000/v1/category/${id}`;
+        await dispatch(removeState({ url }));
+
+        fetchData();
+      }
+    });
+  };
+
+  const updateCategory = (e, id) => {
+    e.preventDefault();
+    swal({
+      title: "ایا از ویرایش این دسته بندی اطمینان دارید؟",
+      icon: "warning",
+      content: "input",
+      buttons: ["نه", "اره"],
+    }).then(async (res) => {
+      if (res.trim().length) {
+        let body = {
+          title: res,
+        };
+
+        let url = `http://localhost:4000/v1/category/${id}`;
+        await dispatch(updateState({ url, body }));
+
+        fetchData();
+      } else {
+        swal({
+          title: "فیلد نمی تواند خالی باشد",
+          icon: "error",
+          buttons: "ok",
+        });
+        fetchData();
+      }
+    });
+  };
   return (
     <>
       <div className="mt-10">
@@ -45,6 +110,45 @@ export default function FormDataCategory() {
             </button>
           </div>
         </form>
+      </div>
+      <div className=" flex  items-center justify-end mt-16 lg:p-6  ">
+        <table className=" table overflow-x-auto w-[100%]">
+          <thead>
+            <tr>
+              <th>شناسه</th>
+              <th>عنوان</th>
+              <th> حذف</th>
+              <th>ویرایش</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {categories.map((category, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{category.title}</td>
+
+                <td>
+                  <button
+                    onClick={(e) => removeCategory(e, category._id)}
+                    className="border pr-4 pl-4 pb-[3px] transition-all duration-300 hover:bg-neutral-400 hover:text-white"
+                  >
+                    حذف
+                  </button>
+                </td>
+
+                <td>
+                  <button
+                    onClick={(e) => updateCategory(e, category._id)}
+                    className="border pr-4 pl-4 pb-[3px] transition-all duration-300 hover:bg-neutral-400 hover:text-white"
+                  >
+                    ویرایش
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import HeaderDesktop from "../../components/adminPanel/headerDesktop/HeaderDesktop";
 import { Outlet } from "react-router-dom";
-import Table from "../../components/adminPanel/table/Table";
+
 import HeaderMobile from "../../components/adminPanel/headerMobile/HeaderMobile";
 
 export default function IndexPAdmin() {
@@ -17,7 +17,7 @@ export default function IndexPAdmin() {
 
         <div className="w-[100%]">
           <Outlet />
-          <Table />
+         
         </div>
       </div>
     </>

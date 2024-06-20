@@ -1,11 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { json } from "react-router-dom";
+import swal from "sweetalert";
+
+const adminToken = JSON.parse(localStorage.getItem("admin"));
 
 export const getStates = createAsyncThunk("state/getStates", async (arg) => {
+  console.log(arg.url);
   return fetch(arg.url, {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${adminToken.token}`,
+      Authorization: `Bearer ${adminToken}`,
     },
   })
     .then((res) => {
@@ -19,14 +22,24 @@ export const getStates = createAsyncThunk("state/getStates", async (arg) => {
 });
 export const removeState = createAsyncThunk(
   "state/removeState",
-  async (url) => {
-    console.log(url);
-    return fetch(url, {
+  async (arg) => {
+    console.log(arg);
+    return fetch(arg.url, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${adminToken}`,
+      },
     })
       .then((res) => {
-        console.log(res);
-        return res.json();
+        if (res.ok) {
+          swal({
+            title: "حذف با موفقیت انجام شد",
+            icon: "success",
+            buttons: "ok",
+          });
+          console.log(res);
+          return res.json();
+        }
       })
       .then((data) => {
         console.log(data);
@@ -34,8 +47,6 @@ export const removeState = createAsyncThunk(
       });
   }
 );
-
-const adminToken = JSON.parse(localStorage.getItem("admin"));
 
 export const createState = createAsyncThunk(
   "state/createState",
@@ -54,8 +65,16 @@ export const createState = createAsyncThunk(
           },
     })
       .then((res) => {
-        console.log(res);
-        return res.json();
+        
+        if (res.ok) {
+          swal({
+            title: "ساخت ایتم ب موفقیت انجام شد",
+            icon: "success",
+            buttons: "ok",
+          });
+          console.log(res);
+          return res.json();
+        }
       })
       .then((data) => {
         console.log(data);
@@ -65,11 +84,33 @@ export const createState = createAsyncThunk(
 );
 
 export const updateState = createAsyncThunk(
-  "state/createState",
-  async (url) => {
-    return fetch(url, {
+  "state/updateState",
+  async (arg) => {
+    console.log(arg);
+    return fetch(arg.url, {
       method: "PUT",
-    });
+
+      body: arg.body ? JSON.stringify(arg.body) : null,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${adminToken}`,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          swal({
+            title: "ویرایش با موفقیت انجام شد",
+            icon: "success",
+            buttons: "ok",
+          });
+          console.log(res);
+          return res.json();
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
   }
 );
 
@@ -85,6 +126,9 @@ const slice = createSlice({
       return action.payload;
     });
     builder.addCase(removeState.fulfilled, (state, action) => {
+      return action.payload;
+    });
+    builder.addCase(updateState.fulfilled, (state, action) => {
       return action.payload;
     });
   },

@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useStore } from "react-redux";
 import Inputs from "../../inputs/Inputs";
-import { createState, getStates } from "../../../Redux/store/fetchStor";
+import {
+  createState,
+  getStates,
+  removeState,
+} from "../../../Redux/store/fetchStor";
+import swal from "sweetalert";
+
 
 const FormDataProduct = () => {
   const [name, setName] = useState("");
@@ -15,9 +21,26 @@ const FormDataProduct = () => {
 
   const [categories, setCategories] = useState([]);
 
-  const store = useStore();
+  const [products, setProducts] = useState([]);
 
+  const store = useStore();
   const dispatch = useDispatch();
+
+  const fetchData = async () => {
+    let url = "http://localhost:4000/v1/category";
+    await dispatch(getStates({ url }));
+
+    let categoryStore = store.getState().fetchStor;
+    setCategories(categoryStore);
+  };
+
+  const fetchDataProduct = async () => {
+    let url = "http://localhost:4000/v1/courses";
+    await dispatch(getStates({ url }));
+
+    let productStore = store.getState().fetchStor;
+    setProducts(productStore);
+  };
 
   const addNewProduct = async (event) => {
     event.preventDefault();
@@ -34,21 +57,33 @@ const FormDataProduct = () => {
     newFormData.append("shortName", shortName);
 
     let url = "http://localhost:4000/v1/courses";
+    await dispatch(createState({ url, newFormData }));
 
-    dispatch(createState({ url, newFormData }));
+    fetchDataProduct();
+    fetchData();
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      let url = "http://localhost:4000/v1/category";
-      await dispatch(getStates({ url }));
-
-      let categoryStore = store.getState().fetchStor;
-      setCategories(categoryStore);
-    };
-
     fetchData();
+    fetchDataProduct();
   }, []);
+
+  const removeProduct =  (e, id) => {
+    console.log(id);
+    e.preventDefault();
+    swal({
+      title: "ایا از حذف این دوره اطمینان دارید؟",
+      icon: "warning",
+      buttons: ["نه", "اره"],
+    }).then(async (res) => {
+      if (res) {
+        let url = `http://localhost:4000/v1/courses/${id}`;
+        await dispatch(removeState({ url }));
+        fetchDataProduct();
+        fetchData();
+      }
+    });
+  };
 
   return (
     <>
@@ -90,7 +125,7 @@ const FormDataProduct = () => {
               <input
                 type="number"
                 placeholder="لطفا قیمت محصول  را وارد کنید "
-                className="form-control placeholder-text text-[12px] w-[50%]"
+                className="form-control placeholder-text text-[12px] w-[80%] sm:w-[50%]"
                 onInput={(e) => setPrice(e.target.value)}
               />
               <div className="md:flex pl-20 gap-2">
@@ -146,6 +181,41 @@ const FormDataProduct = () => {
             </div>
           </form>
         </div>
+      </div>
+
+      <div className=" flex  items-center justify-end mt-16 lg:p-4  ">
+        <table className=" table overflow-x-auto w-[100%]">
+          <thead>
+            <tr>
+              <th>شناسه</th>
+              <th>عنوان</th>
+              <th>مبلغ</th>
+              <th>دسته بندی</th>
+              <th>لینک</th>
+              <th> حذف</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {products.map((item, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{item.name}</td>
+                <td>{item.price}</td>
+                <td>{item.categoryID}</td>
+                <td>{item.shortName}</td>
+                <td>
+                  <button
+                    onClick={(e) => removeProduct(e, item._id)}
+                    className="border pr-4 pl-4 pb-[3px] transition-all duration-300 hover:bg-neutral-400 hover:text-white"
+                  >
+                    حذف
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );
