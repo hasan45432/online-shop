@@ -27,7 +27,7 @@ export default function FormUsers() {
 
   const removeUsers = (e, id) => {
     e.preventDefault();
-    console.log(id);
+
     swal({
       title: "ایا از حذف این کاربر اطمینان دارید ",
       icon: "warning",
@@ -52,24 +52,23 @@ export default function FormUsers() {
       if (res) {
         let url = `http://localhost:4000/v1/users/ban/${id}`;
         await dispatch(updateState({ url }));
-
         fetchData();
       }
     });
   };
   return (
     <>
-      <div className=" flex  items-center justify-end mt-16 lg:p-4  ">
-        <table className=" table overflow-x-auto w-[100%]">
+      <div className=" overflow-x-auto mt-16 md:p-4 mb-10 ">
+        <table className=" w-[100%] table ">
           <thead>
             <tr>
               <th>شناسه</th>
               <th>نام</th>
-              <th>سمت کاربر</th>
+              <th>سمت </th>
               <th> شماره تلفن</th>
               <th>ایمیل</th>
               <th> حذف</th>
-              <th> ویرایش</th>
+              <th> بن کاربر</th>
             </tr>
           </thead>
 

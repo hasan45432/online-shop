@@ -1,9 +1,11 @@
 import React from "react";
-
+import FormDataProfile from "../../../components/adminPanel/formData/FormDataProfile";
 export default function Profile() {
   return (
     <>
-      <div>Profile</div>
+      <div>
+        <FormDataProfile />
+      </div>
     </>
   );
 }

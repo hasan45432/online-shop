@@ -17,14 +17,15 @@ export default function FormDataCategory() {
   const dispatch = useDispatch();
   const store = useStore();
 
-  const addNewCategory = (e) => {
+  const addNewCategory = async (e) => {
     e.preventDefault();
     let body = {
       name: nameCategory,
       title: titleCategory,
     };
     let url = "http://localhost:4000/v1/category";
-    dispatch(createState({ url, body }));
+    await dispatch(createState({ url, body }));
+    fetchData();
   };
 
   const fetchData = async () => {
@@ -87,7 +88,7 @@ export default function FormDataCategory() {
     <>
       <div className="mt-10">
         <form>
-          <div className="w-[100%] xl:w-[70%] mx-auto flex flex-col xl:flex xl:flex-rows items-center gap-4">
+          <div className="sm:w-[80%] xl:w-[50%] w-[100%] mx-auto flex flex-col xl:flex xl:flex-rows items-center gap-4">
             <Inputs
               type={"text"}
               className={"form-control placeholder-text text-[12px]"}

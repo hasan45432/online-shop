@@ -6,6 +6,9 @@ import CategoryPAdmin from "./pages/adminPanel/category/CategoryPAdmin";
 import ProductPAdmin from "./pages/adminPanel/product/ProductPAdmin";
 import Users from "./pages/adminPanel/users/Users";
 import Menus from "./pages/adminPanel/menus/Menus";
+import Profile from "./pages/adminPanel/profile/Profile";
+import Articles from "./pages/adminPanel/articles/Articles";
+
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/login", element: <Login /> },
@@ -18,6 +21,8 @@ const routes = [
       { path: "product", element: <ProductPAdmin /> },
       { path: "users", element: <Users /> },
       { path: "menus", element: <Menus /> },
+      { path: "profile", element: <Profile /> },
+      { path: "articles", element: <Articles /> },
     ],
   },
 ];

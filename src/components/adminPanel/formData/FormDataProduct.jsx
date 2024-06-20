@@ -8,14 +8,13 @@ import {
 } from "../../../Redux/store/fetchStor";
 import swal from "sweetalert";
 
-
 const FormDataProduct = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [support, setSupport] = useState("");
   const [cover, setCover] = useState({});
-  const [categoryID, setCategoryID] = useState("666d8334290441cd168cf4f1");
+  const [categoryID, setCategoryID] = useState("666ec0050605f7b9f16dce8a");
   const [status, setStatus] = useState("");
   const [shortName, setShortName] = useState("");
 
@@ -26,11 +25,12 @@ const FormDataProduct = () => {
   const store = useStore();
   const dispatch = useDispatch();
 
-  const fetchData = async () => {
+  const fetchDataCategory = async () => {
     let url = "http://localhost:4000/v1/category";
     await dispatch(getStates({ url }));
 
     let categoryStore = store.getState().fetchStor;
+
     setCategories(categoryStore);
   };
 
@@ -60,15 +60,15 @@ const FormDataProduct = () => {
     await dispatch(createState({ url, newFormData }));
 
     fetchDataProduct();
-    fetchData();
+    fetchDataCategory();
   };
 
   useEffect(() => {
-    fetchData();
+    fetchDataCategory();
     fetchDataProduct();
   }, []);
 
-  const removeProduct =  (e, id) => {
+  const removeProduct = (e, id) => {
     console.log(id);
     e.preventDefault();
     swal({
@@ -80,17 +80,17 @@ const FormDataProduct = () => {
         let url = `http://localhost:4000/v1/courses/${id}`;
         await dispatch(removeState({ url }));
         fetchDataProduct();
-        fetchData();
+        fetchDataCategory();
       }
     });
   };
 
   return (
     <>
-      <div className=" container ">
-        <div className="w-[100%] mt-10">
-          <form className="flex flex-col gap-4 xl:flex 2xl:flex-row w-[100%] ">
-            <div className="w-[100%] flex flex-col items-center gap-4">
+      <div>
+        <div className=" mx-auto mt-10">
+          <form className="flex  flex-col  xl:flex 2xl:flex-row w-[95%] ">
+            <div className="sm:w-[80%] mx-auto xl:w-[50%] w-[100%] flex flex-col items-center gap-4">
               <Inputs
                 type={"text"}
                 className={"form-control placeholder-text text-[12px]"}
@@ -112,20 +112,18 @@ const FormDataProduct = () => {
                 placeholder={"لطفا url محصول را وارد کنید"}
                 onText={(e) => setShortName(e)}
               />
-            </div>
 
-            <div className="w-[100%] flex flex-col items-center  gap-4">
               <Inputs
                 type={"text"}
                 className={"form-control placeholder-text text-[12px]"}
                 id={"inputEmail4"}
-                placeholder={"نحوه ی پشتبانی محصول را وارد کنید "}
+                placeholder={" نحوه ی پشتیبانی محصول را وارد کنید "}
                 onText={(e) => setSupport(e)}
               />
               <input
                 type="number"
                 placeholder="لطفا قیمت محصول  را وارد کنید "
-                className="form-control placeholder-text text-[12px] w-[80%] sm:w-[50%]"
+                className="form-control placeholder-text text-[12px] sm:w-[60%] w-[80%]"
                 onInput={(e) => setPrice(e.target.value)}
               />
               <div className="md:flex pl-20 gap-2">
@@ -141,7 +139,7 @@ const FormDataProduct = () => {
                   ))}
                 </select>
               </div>
-              <div className="md:flex pr-16  gap-2 mt-2">
+              <div className="md:flex pr-16 mx-auto gap-2 mt-2">
                 <p>انتخاب عکس :</p>
                 <input
                   type="file"
@@ -151,7 +149,7 @@ const FormDataProduct = () => {
                   onChange={(e) => setCover(e.target.files[0])}
                 ></input>
               </div>
-              <div className="ml-[116px]">
+              <div className="mx-auto">
                 <input
                   type="radio"
                   id="option1"
@@ -174,48 +172,47 @@ const FormDataProduct = () => {
 
               <button
                 onClick={addNewProduct}
-                className="mt-2 hover:bg-neutral-400 transition-all duration-300 rounded-[6px] hover:text-white md:ml-[240px] border pr-6 pl-6  pb-1"
+                className="mt-2 mx-auto hover:bg-neutral-400 transition-all duration-300 rounded-[6px] hover:text-white md:ml-[240px] border pr-6 pl-6  pb-1"
               >
                 افزودن
               </button>
             </div>
           </form>
         </div>
-      </div>
-
-      <div className=" flex  items-center justify-end mt-16 lg:p-4  ">
-        <table className=" table overflow-x-auto w-[100%]">
-          <thead>
-            <tr>
-              <th>شناسه</th>
-              <th>عنوان</th>
-              <th>مبلغ</th>
-              <th>دسته بندی</th>
-              <th>لینک</th>
-              <th> حذف</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {products.map((item, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{item.name}</td>
-                <td>{item.price}</td>
-                <td>{item.categoryID}</td>
-                <td>{item.shortName}</td>
-                <td>
-                  <button
-                    onClick={(e) => removeProduct(e, item._id)}
-                    className="border pr-4 pl-4 pb-[3px] transition-all duration-300 hover:bg-neutral-400 hover:text-white"
-                  >
-                    حذف
-                  </button>
-                </td>
+        <div className="overflow-auto mt-16 lg:p-4 mb-10">
+          <table className=" table w-[500px] sm:w-[100%]">
+            <thead>
+              <tr>
+                <th>شناسه</th>
+                <th>عنوان</th>
+                <th>مبلغ</th>
+                <th>دسته بندی </th>
+                <th>لینک</th>
+                <th> حذف</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {products.map((item, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{item.name}</td>
+                  <td>{item.price}</td>
+                  <td>{item.categoryID}</td>
+                  <td>{item.shortName}</td>
+                  <td>
+                    <button
+                      onClick={(e) => removeProduct(e, item._id)}
+                      className="border pr-4 pl-4 pb-[3px] transition-all duration-300 hover:bg-neutral-400 hover:text-white"
+                    >
+                      حذف
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );

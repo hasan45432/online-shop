@@ -68,7 +68,7 @@ export const createState = createAsyncThunk(
         
         if (res.ok) {
           swal({
-            title: "ساخت ایتم ب موفقیت انجام شد",
+            title: "ساخت ایتم با موفقیت انجام شد",
             icon: "success",
             buttons: "ok",
           });

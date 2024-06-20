@@ -29,7 +29,7 @@ export default function FormDataMenus() {
     fetchData();
   }, []);
 
-  const addNewMenu = (e) => {
+  const addNewMenu = async (e) => {
     e.preventDefault();
     let url = "http://localhost:4000/v1/menus";
     let body = {
@@ -37,17 +37,8 @@ export default function FormDataMenus() {
       href,
     };
 
-    swal({
-      title: "ایا از ساخت منوی جدید اطمینان دارید ؟",
-      icon: "warning",
-      buttons: ["نه", "اره"],
-    }).then(async (res) => {
-      if (res) {
-        await dispatch(createState({ url, body }));
-
-        fetchData();
-      }
-    });
+    await dispatch(createState({ url, body }));
+    fetchData();
   };
 
   const removeMenus = (e, id) => {
@@ -70,7 +61,7 @@ export default function FormDataMenus() {
     <>
       <div>
         <form>
-          <div className="flex flex-col w-[70%] mx-auto gap-6 mt-10">
+          <div className="flex flex-col items-center sm:w-[85%] xl:w-[50%] w-[100%]   mx-auto gap-6 mt-10">
             <Inputs
               type={"text"}
               className={"form-control placeholder-text text-[12px]"}
@@ -88,14 +79,14 @@ export default function FormDataMenus() {
 
             <button
               onClick={addNewMenu}
-              className="mt-2 w-[100px] mx-auto  hover:bg-neutral-400 transition-all duration-300 rounded-[6px] hover:text-white md:ml-[240px] border pr-6 pl-6  pb-1"
+              className="mt-2  w-[100px] 2xl:mx-auto hover:bg-neutral-400 transition-all duration-300 rounded-[6px] hover:text-white md:ml-[240px] border pr-6 pl-6  pb-1"
             >
               افزودن
             </button>
           </div>
         </form>
-        <div className=" flex  items-center justify-end mt-16 lg:p-6  ">
-          <table className=" table overflow-x-auto w-[100%]">
+        <div className="overflow-x-auto  mt-16 lg:p-6  mb-10">
+          <table className=" table w-[700px] sm:w-[100%]">
             <thead>
               <tr>
                 <th>شناسه</th>

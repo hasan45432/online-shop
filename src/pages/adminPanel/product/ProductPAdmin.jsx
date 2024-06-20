@@ -3,7 +3,7 @@ import FormDataProduct from "../../../components/adminPanel/formData/FormDataPro
 export default function ProductPAdmin() {
   return (
     <>
-      <div className=" container">
+      <div className=" overflow-hidden">
         <FormDataProduct />
       </div>
     </>
