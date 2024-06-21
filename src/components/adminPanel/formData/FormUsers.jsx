@@ -59,7 +59,7 @@ export default function FormUsers() {
   return (
     <>
       <div className=" overflow-x-auto mt-16 md:p-4 mb-10 ">
-        <table className=" w-[100%] table ">
+        <table className="table w-[500px] sm:w-[100%]">
           <thead>
             <tr>
               <th>شناسه</th>

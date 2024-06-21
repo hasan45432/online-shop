@@ -8,7 +8,7 @@ export default function FormLogin() {
           <div className="flex justify-around child:text-xl  child:transition-all child:duration-500">
             <a
               href=""
-              className="border border-neutral-900 pr-4 pl-4 pt-1 pb-1 hover:bg-neutral-400 hover:text-white"
+              className="border text-[15px] border-neutral-900 pr-4 pl-4 pt-1 pb-1 hover:bg-neutral-400 hover:text-white"
             >
               REGISTER
             </a>
@@ -25,7 +25,7 @@ export default function FormLogin() {
             <p> process and manage your orders</p>
           </div>
           <form className="flex flex-col justify-center items-center">
-            <div className="flex flex-col w-[80%] sm:w-[50%] gap-3">
+            <div className="flex flex-col w-[80%] sm:w-[50%] xl:w-[40%] 2xl:w-[35%] gap-3">
               <div className="">
                 <input
                   type="email"
@@ -45,7 +45,7 @@ export default function FormLogin() {
             </div>
             <Link
               to="#"
-              className="text-[20px] hover:bg-neutral-400 hover:text-white transition-all duration-500 md:text-[30px] w-[40%] mt-8 h-[35px] md:h-[50px] border border-neutral-800"
+              className="text-[18px] pt-[3px] sm:pt-[3px] md:pb-[50px] hover:bg-neutral-400 hover:text-white transition-all duration-500 md:text-[30px] w-[40%] sm:w-[27%]  xl:w-[20%] mt-8 h-[35px] md:h-[40px]  border border-neutral-800"
             >
               Login
             </Link>

@@ -13,7 +13,7 @@ export const SliderHeader = ({ image }) => {
         spaceBetween={50}
         slidesPerView={1}
         effect="fade"
-        pagination={{ clickable: true }}
+        
         autoplay={{
           delay: 4000,
           disableOnInteraction: false,

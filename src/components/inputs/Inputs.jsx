@@ -11,7 +11,7 @@ export default function Inputs(props) {
 
   return (
     <>
-      <div className="w-[80%] sm:w-[60%] sm:mx-auto">
+      <div className="w-[80%] sm:w-[60%] mx-auto ">
         <input
           type={props.type}
           className={props.className}

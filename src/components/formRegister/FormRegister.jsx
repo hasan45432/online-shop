@@ -9,7 +9,7 @@ export default function FormRegister() {
   return (
     <>
       <div className=" container mx-auto">
-        <div className="mt-20 text-center">
+        <div className="mt-20 text-center ">
           <div className="flex justify-around  child:text-xl  child:transition-all child:duration-500">
             <a
               href=""
@@ -29,46 +29,48 @@ export default function FormRegister() {
             <p className="mt-2">Sign in to speed up the checkout</p>
             <p> process and manage your orders</p>
           </div>
-          <form className="flex flex-col items-center gap-4">
-            <Inputs
-              type={"text"}
-              className={"form-control text-left"}
-              id={"inputEmail4"}
-              placeholder={"userName"}
-              onUserName={(e) => setUserName(e)}
-            />
-            <Inputs
-              type={"text"}
-              className={"form-control text-left"}
-              id={"inputEmail4"}
-              placeholder={"firstName"}
-              onFirstName={(e) => setFirstName(e)}
-            />
-            <Inputs
-              type={"text"}
-              className={"form-control text-left"}
-              id={"inputEmail4"}
-              placeholder={"lastName"}
-              onLastName={(e) => setLastName(e)}
-            />
-            <Inputs
-              type={"text"}
-              className={"form-control text-left"}
-              id={"inputEmail4"}
-              placeholder={"email"}
-              onEmail={(e) => setEmail(e)}
-            />
-            <Inputs
-              type={"text"}
-              className={"form-control text-left"}
-              id={"inputEmail4"}
-              placeholder={"password"}
-              onPassword={(e) => setPassword(e)}
-            />
+          <form className="flex  flex-col items-center gap-4">
+            <div className="flex flex-col w-[100%] md:w-[70%] xl:w-[50%] 2xl:w-[60%] gap-3">
+              <Inputs
+                type={"text"}
+                className={"form-control text-left"}
+                id={"inputEmail4"}
+                placeholder={"userName"}
+                onUserName={(e) => setUserName(e)}
+              />
+              <Inputs
+                type={"text"}
+                className={"form-control text-left"}
+                id={"inputEmail4"}
+                placeholder={"firstName"}
+                onFirstName={(e) => setFirstName(e)}
+              />
+              <Inputs
+                type={"text"}
+                className={"form-control text-left"}
+                id={"inputEmail4"}
+                placeholder={"lastName"}
+                onLastName={(e) => setLastName(e)}
+              />
+              <Inputs
+                type={"text"}
+                className={"form-control text-left"}
+                id={"inputEmail4"}
+                placeholder={"email"}
+                onEmail={(e) => setEmail(e)}
+              />
+              <Inputs
+                type={"text"}
+                className={"form-control text-left"}
+                id={"inputEmail4"}
+                placeholder={"password"}
+                onPassword={(e) => setPassword(e)}
+              />
+              <button className="text-[20px] w-[40%] sm:w-[27%]  xl:w-[33%] pl-3 pr-3 hover:bg-neutral-400 hover:text-white  transition-all duration-500 mx-auto md:text-[30px]   mt-8 h-[35px] pb-[20px]  md:pb-[50px] border border-neutral-800">
+                register
+              </button>
+            </div>
           </form>
-          <button className="text-[20px] hover:bg-neutral-400 hover:text-white  transition-all duration-500 mx-auto md:text-[30px] w-[40%] mt-8 h-[35px]  md:pb-[50px] border border-neutral-800">
-            Login
-          </button>
         </div>
       </div>
     </>

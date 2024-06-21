@@ -22,7 +22,7 @@ export default function FormDataProfile() {
     <>
       <div>
         <div className="overflow-x-auto mt-16 lg:p-6 mb-10 ">
-          <table className=" table overflow-x-auto w-[100%]">
+          <table className=" table  w-[500px] sm:w-[100%]">
             <thead>
               <tr>
                 <th>شناسه</th>
