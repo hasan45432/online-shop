@@ -3,10 +3,9 @@ import React, { useEffect } from "react";
 export default function Inputs(props) {
  
   const add = (e) => {
-    if (props.onText) {
-      props.onText(e.target.value);
    
-    }
+      props.onText(e.target.value);
+    
   };
 
   return (
