@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch,useStore } from "react-redux";
 import { loginState } from "../../Redux/store/authentication";
 import swal from "sweetalert";
 export default function FormLogin() {
@@ -8,6 +8,7 @@ export default function FormLogin() {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
+  const store = useStore();
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -17,9 +18,19 @@ export default function FormLogin() {
       password,
     };
 
-    if (identifier.length & password.length) {
-      let url = "http://localhost:4000/v1/auth/login";
-      await dispatch(loginState({ url, body }));
+    if (identifier.length && password.length) {
+      if (password.length >= 8) {
+        let url = "http://localhost:4000/v1/auth/login";
+        await dispatch(loginState({ url, body }));
+        let loginStore = store.getState().authentication.accessToken;
+        localStorage.setItem("users", loginStore);
+      } else {
+        swal({
+          title: "تعداد کاراکتر پسورد باید بیش تر از هشت عدد باشد",
+          icon: "error",
+          buttons: "ok",
+        });
+      }
     } else {
       swal({
         title: "لطفا تمامی فیلد ها را پر کنید ",
@@ -32,12 +43,18 @@ export default function FormLogin() {
     <>
       <div className=" container mx-auto">
         <div className="mt-20 text-center">
-          <div className="flex justify-around  xl:mr-[200px] xl:ml-[200px]  child:text-xl  child:transition-all child:duration-500">
+          <div className="flex justify-around child:text-[15px]   xl:mr-[200px] xl:ml-[200px]  child:text-xl  child:transition-all child:duration-500">
             <Link
               to="/register"
               className="border  grid  border-neutral-900 pr-4 pl-4 pt-1 pb-1 hover:bg-neutral-400 hover:text-white"
             >
               REGISTER
+            </Link>
+            <Link
+              to="/"
+              className="border grid  border-neutral-900 pr-4 pl-4 pt-1 pb-1 hover:bg-neutral-400 hover:text-white"
+            >
+              HOME
             </Link>
             <Link
               to="/login"
@@ -57,7 +74,7 @@ export default function FormLogin() {
                 <input
                   type="text"
                   className="form-control text-left "
-                  placeholder="username"
+                  placeholder="email"
                   onInput={(e) => setIdentifier(e.target.value)}
                 />
               </div>
@@ -72,7 +89,7 @@ export default function FormLogin() {
             </div>
             <button
               onClick={loginUser}
-              className="text-[18px] pt-[3px] sm:pt-[3px] md:pb-[50px] hover:bg-neutral-400 hover:text-white transition-all duration-500 md:text-[30px] w-[40%] sm:w-[27%]  xl:w-[20%] mt-8 h-[35px] md:h-[40px]  border border-neutral-800"
+              className="text-[18px] pt-[3px] pb-[33px] sm:pt-[3px] md:pb-[50px] hover:bg-neutral-400 hover:text-white transition-all duration-500 md:text-[30px] w-[40%] sm:w-[27%]  xl:w-[20%] mt-8 h-[35px] md:h-[40px]  border border-neutral-800"
             >
               Login
             </button>

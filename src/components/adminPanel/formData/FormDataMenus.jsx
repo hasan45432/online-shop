@@ -37,8 +37,16 @@ export default function FormDataMenus() {
       href,
     };
 
-    await dispatch(createState({ url, body }));
-    fetchData();
+    if (title.length && href.length) {
+      await dispatch(createState({ url, body }));
+      fetchData();
+    } else {
+      swal({
+        title: "لطفا تمامی فیلد ها را پر کنید ",
+        icon: "error",
+        buttons: "ok",
+      });
+    }
   };
 
   const removeMenus = (e, id) => {

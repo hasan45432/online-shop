@@ -10,12 +10,12 @@ export default function Product() {
           className=" h-[80%] "
         />
         <div className="flex flex-col items-center">
-          <p className="text-[10px] sm:text-[15px]   custom:text-14 md:text-[14px]  lg:text-[19px]">
+          <p className="text-[10px] sm:text-[15px]  custom:text-14 md:text-[14px]  lg:text-[19px]">
             21WN reversible angora 21WN reversible angora 21WN reversible angora
             21WN reversible angora 21WN reversible angora 21WN reversible angora
           </p>
 
-          <p className="text-[14px] sm:text-[15px] md:text-[14px]  lg:text-[19px] mb-2 text-orange-500">
+          <p className="text-[14px] sm:text-[15px] md:text-[14px] mt-1 lg:text-[19px] mb-2 text-orange-500">
             $120
           </p>
         </div>

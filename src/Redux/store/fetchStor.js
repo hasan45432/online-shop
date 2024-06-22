@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import swal from "sweetalert";
 
-const adminToken = JSON.parse(localStorage.getItem("admin"));
+const adminToken = localStorage.getItem("users");
 
 export const getStates = createAsyncThunk("state/getStates", async (arg) => {
+  console.log(adminToken);
   console.log(arg.url);
   return fetch(arg.url, {
     method: "GET",

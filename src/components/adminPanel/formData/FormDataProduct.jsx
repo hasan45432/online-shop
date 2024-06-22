@@ -56,11 +56,28 @@ const FormDataProduct = () => {
     newFormData.append("status", status);
     newFormData.append("shortName", shortName);
 
-    let url = "http://localhost:4000/v1/courses";
-    await dispatch(createState({ url, newFormData }));
+    if (
+      name.length &&
+      description.length &&
+      price.length &&
+      support.length &&
+      cover &&
+      categoryID.length &&
+      status.length &&
+      shortName.length
+    ) {
+      let url = "http://localhost:4000/v1/courses";
+      await dispatch(createState({ url, newFormData }));
 
-    fetchDataProduct();
-    fetchDataCategory();
+      fetchDataProduct();
+      fetchDataCategory();
+    } else {
+      swal({
+        title: "لطفا تمامی فیلد ها را پر کنید ",
+        icon: "error",
+        buttons: "ok",
+      });
+    }
   };
 
   useEffect(() => {

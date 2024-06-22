@@ -69,11 +69,26 @@ export default function FormDataArticles() {
       cover: articleCover,
     };
 
-    let url = "http://localhost:4000/v1/articles";
-    await dispatch(createState({ url, body }));
+    if (
+      articleName.length &&
+      articleDescription.length &&
+      articleBody.length &&
+      articleShortName.length &&
+      categoryID.length &&
+      articleCover
+    ) {
+      let url = "http://localhost:4000/v1/articles";
+      await dispatch(createState({ url, body }));
 
-    fetchData();
-    fetchDataCategory();
+      fetchData();
+      fetchDataCategory();
+    } else {
+      swal({
+        title: "لطفا تمامی فیلد ها را پر کنید ",
+        icon: "error",
+        buttons: "ok",
+      });
+    }
   };
   return (
     <>

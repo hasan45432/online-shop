@@ -23,9 +23,17 @@ export default function FormDataCategory() {
       name: nameCategory,
       title: titleCategory,
     };
-    let url = "http://localhost:4000/v1/category";
-    await dispatch(createState({ url, body }));
-    fetchData();
+    if (nameCategory.length && titleCategory.length) {
+      let url = "http://localhost:4000/v1/category";
+      await dispatch(createState({ url, body }));
+      fetchData();
+    } else {
+      swal({
+        title: "لطفا تمامی فیلد ها را پر کنید ",
+        icon: "error",
+        buttons: "ok",
+      });
+    }
   };
 
   const fetchData = async () => {

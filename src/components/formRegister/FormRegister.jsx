@@ -28,13 +28,32 @@ export default function FormRegister() {
     };
 
     if (
-      (username.length & name.length & email.length & phone.length,
-      password.length)
+      username.length &&
+      name.length &&
+      email.length &&
+      phone.length &&
+      password.length
     ) {
-      let url = "http://localhost:4000/v1/auth/register";
-      await dispatch(registerState({ url, body }));
-      let registerStore = store.getState().authentication.accessToken;
-      localStorage.setItem("user", registerStore);
+      if (password.length >= 8) {
+        if (phone.length === 11) {
+          let url = "http://localhost:4000/v1/auth/register";
+          await dispatch(registerState({ url, body }));
+          let registerStore = store.getState().authentication.accessToken;
+          localStorage.setItem("users", registerStore);
+        } else {
+          swal({
+            title: "شماره تلفن باید یازده رقم باشد",
+            icon: "error",
+            buttons: "ok",
+          });
+        }
+      } else {
+        swal({
+          title: "تعداد کاراکتر پسورد باید بیش تر از هشت عدد باشد",
+          icon: "error",
+          buttons: "ok",
+        });
+      }
     } else {
       swal({
         title: "لطفا تمامی فیلد ها را پر کنید",
@@ -53,12 +72,18 @@ export default function FormRegister() {
     <>
       <div className=" container mx-auto">
         <div className="mt-20 text-center ">
-          <div className="flex justify-around xl:mr-[200px]   xl:ml-[200px] child:text-xl  child:transition-all child:duration-500">
+          <div className="flex justify-around xl:mr-[200px] child:text-[15px]  xl:ml-[200px]   child:transition-all child:duration-500">
             <Link
               to="/register"
               className="border grid  border-neutral-900 pr-4 pl-4 pt-1 pb-1 hover:bg-neutral-400 hover:text-white"
             >
               REGISTER
+            </Link>
+            <Link
+              to="/"
+              className="border grid  border-neutral-900 pr-4 pl-4 pt-1 pb-1 hover:bg-neutral-400 hover:text-white"
+            >
+              HOME
             </Link>
             <Link
               to="/login"
@@ -108,7 +133,7 @@ export default function FormRegister() {
 
               <button
                 onClick={register}
-                className="text-[18px] mx-auto pt-[3px] pb-[10px]   md:pb-[50px] hover:bg-neutral-400 hover:text-white transition-all duration-500 md:text-[30px] w-[40%] sm:w-[27%]  xl:w-[34%] xl:pb-[54px] mt-8 h-[35px] md:h-[40px]  border border-neutral-800"
+                className="text-[18px] md:text-[25px] lg:text-[30px] mx-auto pt-[3px] pb-[10px]   md:pb-[45px] lg:pb-[53px] hover:bg-neutral-400 hover:text-white transition-all duration-500  w-[40%] sm:w-[33%]  xl:w-[34%] xl:pb-[54px] mt-8 h-[35px] md:h-[40px]  border border-neutral-800"
               >
                 register
               </button>
