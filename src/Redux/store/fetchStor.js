@@ -32,8 +32,15 @@ export const removeState = createAsyncThunk(
       },
     })
       .then((res) => {
-        console.log(res);
-        return res.json();
+        if (res.ok) {
+          swal({
+            title: "ایتم مورد نظر با موفقیت حذف شد",
+            icon: "success",
+            buttons: "ok",
+          });
+          console.log(res);
+          return res.json();
+        }
       })
       .then((data) => {
         console.log(data);
@@ -75,8 +82,6 @@ export const createState = createAsyncThunk(
       });
   }
 );
-
-
 
 export const updateState = createAsyncThunk(
   "state/updateState",

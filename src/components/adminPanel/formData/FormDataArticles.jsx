@@ -60,14 +60,14 @@ export default function FormDataArticles() {
   const addNewArticle = async (e) => {
     e.preventDefault();
 
-    let body = {
-      title: articleName,
-      description: articleDescription,
-      body: articleBody,
-      shortName: articleShortName,
-      categoryID: categoryID,
-      cover: articleCover,
-    };
+    let newFormData = await new FormData();
+
+    newFormData.append("title", articleName);
+    newFormData.append("description", articleDescription);
+    newFormData.append("body", articleBody);
+    newFormData.append("shortName", articleShortName);
+    newFormData.append("categoryID", categoryID);
+    newFormData.append("cover", articleCover);
 
     if (
       articleName.length &&
@@ -78,7 +78,7 @@ export default function FormDataArticles() {
       articleCover
     ) {
       let url = "http://localhost:4000/v1/articles";
-      await dispatch(createState({ url, body }));
+      await dispatch(createState({ url, newFormData }));
 
       fetchData();
       fetchDataCategory();

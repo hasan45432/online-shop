@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar, Pagination, Navigation, A11y } from "swiper";
 import { Autoplay } from "swiper";
-
+import Product from "../product/Product";
+import { useDispatch, useStore } from "react-redux";
+import { getStates, createState } from "../../Redux/store/fetchStor";
 import "swiper/swiper-bundle.min.css";
 
-export const Slider = ({ slides }) => {
+export const Slider = () => {
+  const [products, setProducts] = useState([]);
+
+  const dispatch = useDispatch();
+  const store = useStore();
+
+  const fetchAllProduct = async () => {
+    let url = "http://localhost:4000/v1/courses";
+    await dispatch(getStates({ url }));
+
+    let productStore = store.getState().fetchStor;
+    setProducts(productStore);
+  };
+
+  useEffect(() => {
+    fetchAllProduct();
+  }, []);
   return (
     <>
       <Swiper
@@ -43,17 +61,13 @@ export const Slider = ({ slides }) => {
           },
         }}
       >
-        <SwiperSlide>{slides}</SwiperSlide>
-        <SwiperSlide>{slides}</SwiperSlide>
-        <SwiperSlide>{slides}</SwiperSlide>
-        <SwiperSlide>{slides} </SwiperSlide>
-        <SwiperSlide>{slides}</SwiperSlide>
-        <SwiperSlide>{slides}</SwiperSlide>
-        <SwiperSlide>{slides} </SwiperSlide>
-        <SwiperSlide>{slides} </SwiperSlide>
-        <SwiperSlide>{slides}</SwiperSlide>
-        <SwiperSlide>{slides} </SwiperSlide>
-        <SwiperSlide>{slides} </SwiperSlide>
+        {products.map((product) => {
+          return (
+            <SwiperSlide key={product._id}>
+              <Product key={product._id} {...product} />
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </>
   );

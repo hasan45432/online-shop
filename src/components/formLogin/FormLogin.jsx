@@ -72,7 +72,7 @@ export default function FormLogin() {
             <div className="flex flex-col w-[80%] sm:w-[50%] xl:w-[40%] 2xl:w-[35%] gap-3">
               <div className="">
                 <input
-                  type="text"
+                  type="email"
                   className="form-control text-left "
                   placeholder="email"
                   onInput={(e) => setIdentifier(e.target.value)}

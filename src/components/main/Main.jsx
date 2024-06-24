@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Product from "../product/Product";
 import { Slider } from "../slider/Slider";
-import Blog from "../blog/Blog";
-
+import Article from "../articles/Article";
+import { useDispatch, useStore } from "react-redux";
+import { getStates, createState } from "../../Redux/store/fetchStor";
 import { SliderHeader } from "../sliderHeader/SliderHeader";
+import { Link } from "react-router-dom";
+
 export default function Main() {
+  const [products, setProducts] = useState([]);
+  const [articles, setArticles] = useState([]);
+
+  const dispatch = useDispatch();
+  const store = useStore();
+
+  const fetchAllProduct = async () => {
+    let url = "http://localhost:4000/v1/courses";
+    await dispatch(getStates({ url }));
+
+    let productStore = store.getState().fetchStor;
+    setProducts(productStore);
+  };
+
+  const fetchAllArticle = async () => {
+    let url = "http://localhost:4000/v1/articles";
+    await dispatch(getStates({ url }));
+
+    let articleStore = store.getState().fetchStor;
+    setArticles(articleStore);
+  };
+
+  useEffect(() => {
+    fetchAllProduct();
+    fetchAllArticle();
+    
+  }, []);
   return (
     <>
       <div>
@@ -18,49 +48,47 @@ export default function Main() {
             </h2>
             <p className=" w-[180px] md:w-[260px]  h-[1px] bg-line mt-4 mb-4"></p>
           </div>
-
-          <div className="grid  lg:mr-[90px] lg:ml-[90px] xl:mr-[130px] xl:ml-[130px] grid-cols-2 2xl:gap-4 xl:gap-4  md:gap-3 sm:gap-2 sm:p-2 md:grid-cols-3 xl:grid-cols-4 mt-4 mb-4  ">
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
+          {console.log(products)}
+          <div className="grid sm:mr-[50px] sm:ml-[50px] lg:mr-[90px] lg:ml-[90px] xl:mr-[130px] xl:ml-[130px] grid-cols-2  xl:gap-4  md:gap-3 sm:gap-2 sm:p-2 md:grid-cols-3 xl:grid-cols-4 mt-4 mb-4  ">
+            {products.slice(7, 19).map((product) => {
+              return <Product key={product._id} {...product} />;
+            })}
           </div>
 
           <div className=" text-center mb-10 mt-8 ">
-            <a
-              href=""
+            <Link
+              to="/products"
               className="pr-[50px]  pl-[50px] hover:text-white hover:bg-neutral-400 pt-1 pb-2 transition-all duration-300  border  md:pr-[120px] md:pl-[120px] md:pt-2 md:pb-2  text-2xl "
             >
               MORE
-            </a>
+            </Link>
           </div>
         </div>
         <div className=" container ">
-          <div className="xl:mr-[130px] xl:ml-[130px] mt-[70px]">
+          <div className="sm:mr-[50px] sm:ml-[50px] lg:mr-[90px] lg:ml-[90px] xl:mr-[130px] xl:ml-[130px] mt-[70px]">
             <div className="mt-10 ">
               <h2 className=" text-center text-4xl md:text-5xl text-black ">
                 just for you
               </h2>
-              <p className="mx-auto w-[120px] md:w-[200px]  h-[1px] bg-line mt-4 mb-4"></p>
+              <p className="mx-auto  w-[120px] md:w-[200px]  h-[1px] bg-line mt-4 mb-4"></p>
             </div>
-            <Slider slides={<Product />} />
+            <Slider />
           </div>
           <div className="mt-[70px]">
             <div>
               <h2 className="text-center text-[30px] md:text-[60px] mt-[30px]">
-                BLOG
+                Articles
               </h2>
               <p className=" w-[180px] md:w-[260px] mx-auto h-[1px] bg-line mt-2 mb-4"></p>
             </div>
-            <div className="grid  xl:mr-[130px] xl:ml-[130px]  2xl:gap-5 xl:gap-4  md:gap-3 sm:gap-2 grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-              <Blog />
-              <Blog />
-              <Blog />
-              <Blog />
+            <div className="grid sm:mr-[50px] sm:ml-[50px]  lg:mr-[90px] lg:ml-[90px] xl:mr-[130px] xl:ml-[130px]  xl:gap-4  md:gap-3 sm:gap-2 grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+              {console.log(articles)}
+              {articles.map((article) => {
+                return <Article key={article._id} {...article} />;
+              })}
+              <div>
+                <img src="" alt="" />
+              </div>
             </div>
           </div>
         </div>
