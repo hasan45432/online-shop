@@ -32,15 +32,8 @@ export const removeState = createAsyncThunk(
       },
     })
       .then((res) => {
-        if (res.ok) {
-          swal({
-            title: "ایتم مورد نظر با موفقیت حذف شد",
-            icon: "success",
-            buttons: "ok",
-          });
-          console.log(res);
-          return res.json();
-        }
+        console.log(res);
+        return res.json();
       })
       .then((data) => {
         console.log(data);
@@ -66,15 +59,8 @@ export const createState = createAsyncThunk(
           },
     })
       .then((res) => {
-        if (res.ok) {
-          swal({
-            title: "ساخت ایتم با موفقیت انجام شد",
-            icon: "success",
-            buttons: "ok",
-          });
-          console.log(res);
-          return res.json();
-        }
+        console.log(res);
+        return res.json();
       })
       .then((data) => {
         console.log(data);
@@ -97,15 +83,8 @@ export const updateState = createAsyncThunk(
       },
     })
       .then((res) => {
-        if (res.ok) {
-          swal({
-            title: "ویرایش با موفقیت انجام شد",
-            icon: "success",
-            buttons: "ok",
-          });
-          console.log(res);
-          return res.json();
-        }
+        console.log(res);
+        return res.json();
       })
       .then((data) => {
         console.log(data);
@@ -123,7 +102,6 @@ const slice = createSlice({
       return action.payload;
     });
     builder.addCase(createState.fulfilled, (state, action) => {
-      console.log(action);
       return action.payload;
     });
     builder.addCase(removeState.fulfilled, (state, action) => {

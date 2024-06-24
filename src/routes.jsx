@@ -9,12 +9,15 @@ import Menus from "./pages/adminPanel/menus/Menus";
 import Profile from "./pages/adminPanel/profile/Profile";
 import Articles from "./pages/adminPanel/articles/Articles";
 import Products from "./pages/products/Products";
+import ProductInfo from "./pages/productInfo/ProductInfo";
 
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   { path: "/products", element: <Products /> },
+  { path: "/productsInfo/:shortname", element: <ProductInfo /> },
+
   {
     path: "/p-admin/*",
     element: <IndexPAdmin />,

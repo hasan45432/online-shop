@@ -33,7 +33,6 @@ export default function Main() {
   useEffect(() => {
     fetchAllProduct();
     fetchAllArticle();
-    
   }, []);
   return (
     <>
@@ -58,9 +57,9 @@ export default function Main() {
           <div className=" text-center mb-10 mt-8 ">
             <Link
               to="/products"
-              className="pr-[50px]  pl-[50px] hover:text-white hover:bg-neutral-400 pt-1 pb-2 transition-all duration-300  border  md:pr-[120px] md:pl-[120px] md:pt-2 md:pb-2  text-2xl "
+              className="pr-[50px]  pl-[50px] hover:text-white hover:bg-neutral-400 pt-1 transition-all duration-300  border  md:pr-[120px] md:pl-[120px] md:pt-2 md:pb-2  text-2xl "
             >
-              MORE
+              همه ی محصولات
             </Link>
           </div>
         </div>

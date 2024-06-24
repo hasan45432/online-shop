@@ -4,7 +4,7 @@ export default function HeaderDesktop() {
   return (
     <>
       <div>
-        <ul className=" child-hover:bg-neutral-400 child-hover:text-white child:w-[100%] child:transition-all shadow-2xl child:duration-500 child:p-2 child:h-[50px] child:rounded-[10px]  p-6 flex flex-col gap-6 bg-neutral-200 w-[250px] h-[1500px]">
+        <ul className=" child-hover:bg-neutral-400 child-hover:text-white child:w-[100%] child:transition-all shadow-2xl child:duration-500 child:p-2 child:h-[50px] child:rounded-[10px]  p-6 flex flex-col gap-6 bg-neutral-200 w-[250px] h-[2000px]">
           <li className="flex items-center">
             <svg
               viewBox="0 0 24 24"

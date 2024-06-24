@@ -46,7 +46,7 @@ export default function Products() {
       </div>
       <div className=" container">
         <input
-          className="w-[70%] sm:w-[50%] md:w-[60%] lg:w-[50%] xl:w-[40%] 2xl:w-[30%] form-control mx-auto mt-12"
+          className="w-[70%] sm:w-[50%] md:w-[60%] lg:w-[50%] xl:w-[40%] 2xl:w-[30%] form-control mx-auto mt-10 "
           type="text"
           placeholder="جستجوی محصول ..."
           onInput={searchProduct}
