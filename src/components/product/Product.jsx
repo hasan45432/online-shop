@@ -20,6 +20,7 @@ export default function Product(props) {
               ${props.price}
             </p>
           </div>
+          <button className="border pr-4 pl-4 pb-1 m-2">خرید</button>
         </div>
       </Link>
     </>

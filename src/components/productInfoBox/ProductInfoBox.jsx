@@ -77,7 +77,7 @@ pb-[20px] rounded-[50px] mt-10 mr-4"
 pb-[20px] rounded-[50px] mt-10 "
                 >
                   {" "}
-                  <p> تاریخ ساخت :</p>
+                  <p> تاریخ عرضه :</p>
                   <p>{productCreatedAt.slice(0, 10)}</p>
                 </div>
                 <div
