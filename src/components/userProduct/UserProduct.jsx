@@ -23,7 +23,7 @@ export default function UserProduct(props) {
 
     swal({
       title:
-        "به دلیل ناقض بودن  backend امکان حذف دوره از سبد خرید توسط کاربر وجود ندارد ",
+        "به دلیل ناقص بودن  backend امکان حذف دوره از سبد خرید توسط کاربر وجود ندارد ",
       icon: "warning",
       buttons: "ok",
     });
@@ -31,11 +31,11 @@ export default function UserProduct(props) {
   return (
     <>
       <div className="">
-        <div className="  p-4 flex flex-col items-center h-[245px] shadow-md  m-1 hover:scale-110 transition  duration-300  truncate	 sm:h-[345px]  md:h-[317px] lg:h-[340px]   xl:h-[345px] 2xl:h-[410px] bg-white rounded-[15px]">
+        <div className="  pt-2 flex flex-col items-center h-[230px] shadow-md  m-1 hover:scale-110 transition  duration-300  truncate	 sm:h-[310px]  md:h-[317px] lg:h-[340px]   xl:h-[345px] 2xl:h-[410px] bg-white rounded-[15px]">
           <img
             src={`http://localhost:4000/courses/covers/${props.course.cover}`}
             alt=""
-            className=" h-[100px] sm:h-[200px] md:h-[170px] xl:h-[230px]"
+            className=" h-[100px] sm:h-[150px] md:h-[170px] xl:h-[230px]"
           />
           <div className="flex flex-col items-center">
             <p className="text-[10px] sm:text-[15px] custom:text-14 md:text-[14px] 2xl:pt-3 lg:text-[19px]">

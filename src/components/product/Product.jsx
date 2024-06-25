@@ -19,11 +19,11 @@ export default function Product(props) {
   return (
     <>
       <Link to={`/productsInfo/${props.shortName}`}>
-        <div className="  p-4 flex flex-col items-center h-[190px] shadow-md  m-1 hover:scale-110 transition  duration-300  truncate	 sm:h-[300px]  md:h-[270px]   xl:h-[330px] 2xl:h-[383px] bg-white rounded-[15px]">
+        <div className=" pt-2  flex flex-col items-center h-[194px] shadow-md  m-1 hover:scale-110 transition  duration-300  truncate	 sm:h-[245px]  md:h-[280px] lg:h-[293px]  xl:h-[330px] 2xl:h-[345px] bg-white rounded-[15px]">
           <img
             src={`http://localhost:4000/courses/covers/${props.cover}`}
             alt=""
-            className=" h-[100px] sm:h-[200px] md:h-[170px] xl:h-[230px]"
+            className=" h-[100px] sm:h-[140px] md:h-[170px]  xl:h-[200px]"
           />
           <div className="flex flex-col items-center">
             <p className="text-[10px] sm:text-[15px] custom:text-14 md:text-[14px] 2xl:pt-3 lg:text-[19px]">
@@ -35,7 +35,7 @@ export default function Product(props) {
           </div>
           <button
             onClick={addToShoppingBasket}
-            className="border pr-4 hover:text-white hover:bg-neutral-400 pl-4 pb-1 m-1"
+            className="border text-[12px] md:text-[18px] md:pb-2  font-vazirBlack pr-4 hover:text-white hover:bg-neutral-400 pl-4 pb-[5px] m-1"
           >
             خرید
           </button>

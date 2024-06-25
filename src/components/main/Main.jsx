@@ -48,7 +48,7 @@ export default function Main() {
             <p className=" w-[180px] md:w-[260px]  h-[1px] bg-line mt-4 mb-4"></p>
           </div>
           {console.log(products)}
-          <div className="grid sm:mr-[50px] sm:ml-[50px] lg:mr-[90px] lg:ml-[90px] xl:mr-[130px] xl:ml-[130px] grid-cols-2  xl:gap-4  md:gap-3 sm:gap-2 sm:p-2 md:grid-cols-3 xl:grid-cols-4 mt-4 mb-4">
+          <div className="grid sm:mr-[70px] sm:ml-[70px] md:mr-[30px] md:ml-[30px] lg:mr-[110px] lg:ml-[110px] xl:mr-[110px] xl:ml-[110px] grid-cols-2  xl:gap-4  md:gap-3 sm:gap-2 sm:p-2 md:grid-cols-3 xl:grid-cols-4 mt-4 mb-4">
             {products.slice(7, 19).map((product) => {
               return <Product key={product._id} {...product} />;
             })}
@@ -57,9 +57,9 @@ export default function Main() {
           <div className=" text-center mb-10 mt-8 ">
             <Link
               to="/products"
-              className="pr-[50px]  pl-[50px] hover:text-white hover:bg-neutral-400 pt-1 transition-all duration-300  border  md:pr-[120px] md:pl-[120px] md:pt-2 md:pb-2  text-2xl "
+              className="pr-[30px] text-[13px] pb-2  pl-[30px] sm:text-[20px] sm:pr-[40px] sm:pl-[40px] hover:text-white hover:bg-neutral-400 pt-1 transition-all duration-300  border  md:pr-[120px] md:pl-[120px] md:pt-2 md:pb-2  text-2xl "
             >
-              همه ی محصولات
+              تمام محصولات
             </Link>
           </div>
         </div>

@@ -5,6 +5,7 @@ import Footer from "../../components/footer/Footer";
 import FormRegister from "../../components/formRegister/FormRegister";
 
 export default function Register() {
+ 
   return (
     <>
       <div className="block lg:hidden">

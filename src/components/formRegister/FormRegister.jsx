@@ -66,6 +66,8 @@ export default function FormRegister() {
   useEffect(() => {
     let url = "http://localhost:4000/v1/auth/me";
     dispatch(getStates({ url }));
+
+    window.scroll(0, 0);
   }, []);
 
   return (

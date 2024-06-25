@@ -22,6 +22,7 @@ export default function UserShoppingBasket() {
   };
 
   useEffect(() => {
+    window.scroll(0, 0);
     fetchData();
   }, []);
   return (
@@ -34,7 +35,7 @@ export default function UserShoppingBasket() {
           <HeaderDesckTop />
         </div>
         <div className=" container mx-auto">
-          <div className="grid sm:mr-[50px] sm:ml-[50px] md:mr-[20px] md:ml-[20px] lg:mr-[90px] lg:ml-[90px] xl:mr-[130px] xl:ml-[130px] grid-cols-2  xl:gap-4  md:gap-3 sm:gap-2 sm:p-2 md:grid-cols-3 xl:grid-cols-4 mt-4 mb-4">
+          <div className="grid sm:mr-[60px] sm:ml-[60px] md:mr-[20px] md:ml-[20px] lg:mr-[90px] lg:ml-[90px] xl:mr-[130px] xl:ml-[130px] grid-cols-2  xl:gap-4  md:gap-3 sm:gap-2 sm:p-2 md:grid-cols-3 xl:grid-cols-4 mt-4 mb-4">
             {userProducts.map((product) => {
               return <UserProduct key={product._id} {...product} />;
             })}

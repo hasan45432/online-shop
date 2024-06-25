@@ -1,23 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch,useStore } from "react-redux";
+import { useDispatch, useStore } from "react-redux";
+import HeaderDesckTop from "../../components/headerdDesctop/HeaderDesckTop";
 import { loginState } from "../../Redux/store/authentication";
+
 import swal from "sweetalert";
 export default function FormLogin() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+  const [refresh, setRefresh] = useState(false);
 
   const dispatch = useDispatch();
   const store = useStore();
 
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   const loginUser = async (e) => {
     e.preventDefault();
-
     let body = {
       identifier,
       password,
     };
 
+    setRefresh(true)
     if (identifier.length && password.length) {
       if (password.length >= 8) {
         let url = "http://localhost:4000/v1/auth/login";
@@ -39,11 +46,15 @@ export default function FormLogin() {
       });
     }
   };
+
   return (
     <>
+      <div className=" hidden lg:block">
+        <HeaderDesckTop user={refresh}/>
+      </div>
       <div className=" container mx-auto">
         <div className="mt-20 text-center">
-          <div className="flex justify-around child:text-[15px]   xl:mr-[200px] xl:ml-[200px]  child:text-xl  child:transition-all child:duration-500">
+          <div className="flex justify-around child:text-[15px]  xl:mr-[200px] xl:ml-[200px]  child:text-md  child:transition-all child:duration-500">
             <Link
               to="/register"
               className="border  grid  border-neutral-900 pr-4 pl-4 pt-1 pb-1 hover:bg-neutral-400 hover:text-white"
@@ -52,7 +63,7 @@ export default function FormLogin() {
             </Link>
             <Link
               to="/"
-              className="border grid  border-neutral-900 pr-4 pl-4 pt-1 pb-1 hover:bg-neutral-400 hover:text-white"
+              className="border ml-6 grid  border-neutral-900 pr-4 pl-4 pt-1 pb-1 hover:bg-neutral-400 hover:text-white"
             >
               HOME
             </Link>
