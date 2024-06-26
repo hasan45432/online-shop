@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 export default function Main() {
   const [products, setProducts] = useState([]);
   const [articles, setArticles] = useState([]);
+  const [user, setUser] = useState("");
+
 
   const dispatch = useDispatch();
   const store = useStore();
@@ -30,10 +32,13 @@ export default function Main() {
     setArticles(articleStore);
   };
 
+
   useEffect(() => {
     fetchAllProduct();
     fetchAllArticle();
+  
   }, []);
+
   return (
     <>
       <div>
@@ -57,7 +62,7 @@ export default function Main() {
           <div className=" text-center mb-10 mt-8 ">
             <Link
               to="/products"
-              className="pr-[30px] text-[13px] pb-2  pl-[30px] sm:text-[20px] sm:pr-[40px] sm:pl-[40px] hover:text-white hover:bg-neutral-400 pt-1 transition-all duration-300  border  md:pr-[120px] md:pl-[120px] md:pt-2 md:pb-2  text-2xl "
+              className="pr-[30px] shadow-md text-[13px] pb-2  pl-[30px] sm:text-[20px] sm:pr-[40px] sm:pl-[40px] hover:text-white hover:bg-neutral-400 pt-1 transition-all duration-300  border  md:pr-[120px] md:pl-[120px] md:pt-2 md:pb-2  text-2xl "
             >
               تمام محصولات
             </Link>

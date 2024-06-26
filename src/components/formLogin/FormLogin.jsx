@@ -1,36 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useStore } from "react-redux";
-import HeaderDesckTop from "../../components/headerdDesctop/HeaderDesckTop";
-import { loginState } from "../../Redux/store/authentication";
 
+import { loginState } from "../../Redux/store/authentication";
+import { getStates } from "../../Redux/store/fetchStor";
 import swal from "sweetalert";
 export default function FormLogin() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
-  const [refresh, setRefresh] = useState(false);
+  const [user, setUser] = useState("");
 
   const dispatch = useDispatch();
   const store = useStore();
 
-  useEffect(() => {
-    window.scroll(0, 0);
-  }, []);
+
 
   const loginUser = async (e) => {
     e.preventDefault();
+
     let body = {
       identifier,
       password,
     };
-
-    setRefresh(true)
     if (identifier.length && password.length) {
       if (password.length >= 8) {
         let url = "http://localhost:4000/v1/auth/login";
         await dispatch(loginState({ url, body }));
         let loginStore = store.getState().authentication.accessToken;
-        localStorage.setItem("users", loginStore);
+        await localStorage.setItem("users", loginStore);
       } else {
         swal({
           title: "تعداد کاراکتر پسورد باید بیش تر از هشت عدد باشد",
@@ -47,11 +44,14 @@ export default function FormLogin() {
     }
   };
 
+  useEffect(() => {
+    window.scroll(0, 0);
+    
+  }, []);
+
   return (
     <>
-      <div className=" hidden lg:block">
-        <HeaderDesckTop user={refresh}/>
-      </div>
+  
       <div className=" container mx-auto">
         <div className="mt-20 text-center">
           <div className="flex justify-around child:text-[15px]  xl:mr-[200px] xl:ml-[200px]  child:text-md  child:transition-all child:duration-500">

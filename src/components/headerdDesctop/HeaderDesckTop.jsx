@@ -2,25 +2,26 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useStore } from "react-redux";
 import { getStates } from "../../Redux/store/fetchStor";
+
 export default function HeaderDesckTop(props) {
   const [user, setUser] = useState("");
+
+
   const dispatch = useDispatch();
   const store = useStore();
-  const loginStore = store.getState().authentication.accessToken;
 
   const fetchDataUser = async () => {
     let url = "http://localhost:4000/v1/auth/me";
 
     await dispatch(getStates({ url }));
 
-    let storeGetMy = store.getState().fetchStor;
-    await setUser(storeGetMy.username);
-    console.log(storeGetMy);
+    let userData = store.getState().fetchStor;
+    setUser(userData.username);
   };
 
   useEffect(() => {
-    fetchDataUser();
-  }, [props]);
+      fetchDataUser();
+  }, [getStates]);
 
   return (
     <div>
@@ -31,12 +32,12 @@ export default function HeaderDesckTop(props) {
           <div></div>
           <ul className="flex gap-3  child:text-[19px]  text-black/60 font-vazirBlack child-hover:text-orange-500 child:transition-colors duration-300">
             <li>
-              <a href="#" className=" ">
+              <Link to="/" className=" ">
                 صفحه اصلی
-              </a>
+              </Link>
             </li>
             <li className="">
-              <a href="#"> فروشگاه </a>
+              <Link to="/products"> تمام محصولات </Link>
             </li>
             <li>
               <a href="#"> دیکشنری </a>
@@ -52,7 +53,7 @@ export default function HeaderDesckTop(props) {
             </li>
           </ul>
         </nav>
-        {console.log(user)}
+
         <div className="flex gap-5 text-gray-100 ml-5">
           <div className="flex gap-1 items-center moodinbody">
             <img
@@ -86,7 +87,7 @@ export default function HeaderDesckTop(props) {
             ) : (
               <div className=" flex items-center gap-4">
                 <div className="border-2 border-black/10 text-orange-500 pr-3 pl-3 rounded-[10px] text-center pb-8 min-w-[100px] h-8">
-                  {user}
+                  {user ? user : ""}
                 </div>
                 <Link to="/usershoppingbasket">
                   <svg
