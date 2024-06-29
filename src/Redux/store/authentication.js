@@ -15,16 +15,11 @@ export const registerState = createAsyncThunk(
     })
       .then((res) => {
         if (res.ok) {
-          swal({
-            title: "ثبت نام با موفقیت انجام شد ",
-            icon: "success",
-            buttons: "ok",
-          });
           console.log(res);
           return res.json();
         } else if (res.status === 409) {
           swal({
-            title: "نام کاربری یا ایمیل از قبل وجود دارد ",
+            title: "شما قبلا در سایت ثبت نام کردین",
             icon: "error",
             buttons: "ok",
           });
@@ -51,14 +46,9 @@ export const loginState = createAsyncThunk("state/loginState", async (arg) => {
   })
     .then((res) => {
       if (res.ok) {
-        swal({
-          title: "با موفقیت وارد شدین",
-          icon: "success",
-          buttons: "ok",
-        });
         console.log(res);
         return res.json();
-      } else  {
+      } else {
         swal({
           title: "نام کاربری یا رمز عبور اشتباه است",
           icon: "error",
@@ -74,6 +64,27 @@ export const loginState = createAsyncThunk("state/loginState", async (arg) => {
     });
 });
 
+export const getUserData = createAsyncThunk(
+  "state/getUserData",
+  async (arg) => {
+    console.log(arg);
+    return fetch(arg.url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${arg.userToken}`,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
+  }
+);
+
 const slice = createSlice({
   name: "users",
   initialState: [],
@@ -83,6 +94,9 @@ const slice = createSlice({
       return action.payload;
     });
     builder.addCase(loginState.fulfilled, (state, action) => {
+      return action.payload;
+    });
+    builder.addCase(getUserData.fulfilled, (state, action) => {
       return action.payload;
     });
   },

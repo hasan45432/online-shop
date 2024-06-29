@@ -120,8 +120,8 @@ export default function FormDataCategory() {
           </div>
         </form>
       </div>
-      <div className=" flex  items-center justify-end mt-16 lg:p-6  ">
-        <table className=" table overflow-x-auto w-[100%]">
+      <div className=" overflow-auto mt-16 lg:p-4 mb-10  ">
+        <table className=" table w-[600px] sm:w-[100%]">
           <thead>
             <tr>
               <th>شناسه</th>

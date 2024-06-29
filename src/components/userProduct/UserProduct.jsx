@@ -1,13 +1,9 @@
-import React, { useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
 import { useDispatch, useStore } from "react-redux";
-
+import { useLocation } from "react-router-dom";
 export default function UserProduct(props) {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    console.log(props.course);
-  }, [props]);
+  const userToken = localStorage.getItem("users");
 
   const completeShop = (e) => {
     e.preventDefault();

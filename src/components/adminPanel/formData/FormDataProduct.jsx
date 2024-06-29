@@ -106,8 +106,8 @@ const FormDataProduct = () => {
     <>
       <div>
         <div className=" mx-auto mt-10">
-          <form className="flex  flex-col  xl:flex 2xl:flex-row w-[95%] ">
-            <div className="sm:w-[80%] mx-auto xl:w-[50%] w-[100%] flex flex-col items-center gap-4">
+          <form className="flex  flex-col mx-auto xl:flex 2xl:flex-row w-[95%] ">
+            <div className="sm:w-[80%]   xl:w-[50%] w-[100%] flex flex-col items-center gap-4">
               <Inputs
                 type={"text"}
                 className={"form-control placeholder-text text-[12px]"}
@@ -197,7 +197,7 @@ const FormDataProduct = () => {
           </form>
         </div>
         <div className="overflow-auto mt-16 lg:p-4 mb-10">
-          <table className=" table w-[500px] sm:w-[100%]">
+          <table className=" table w-[700px] sm:w-[100%]">
             <thead>
               <tr>
                 <th>شناسه</th>

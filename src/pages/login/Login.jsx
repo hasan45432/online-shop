@@ -6,12 +6,11 @@ import HeaderDesckTop from "../../components/headerdDesctop/HeaderDesckTop";
 export default function Login() {
   return (
     <>
-  
-      <div className=" hidden lg:block">
-        <HeaderDesckTop />
-      </div>
       <div className="block lg:hidden">
         <Header />
+      </div>
+      <div>
+        <HeaderDesckTop />
       </div>
       <FormLogin />
       <Footer />

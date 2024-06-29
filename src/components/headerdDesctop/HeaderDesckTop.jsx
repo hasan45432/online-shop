@@ -1,27 +1,49 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import { useDispatch, useStore } from "react-redux";
-import { getStates } from "../../Redux/store/fetchStor";
+import { getUserData } from "../../Redux/store/authentication";
+import swal from "sweetalert";
 
 export default function HeaderDesckTop(props) {
   const [user, setUser] = useState("");
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const dispatch = useDispatch();
   const store = useStore();
+  const location = useLocation();
+  const params = useParams();
+  const userToken = localStorage.getItem("users");
 
   const fetchDataUser = async () => {
     let url = "http://localhost:4000/v1/auth/me";
 
-    await dispatch(getStates({ url }));
+    await dispatch(getUserData({ url, userToken }));
 
-    let userData = store.getState().fetchStor;
-    setUser(userData.username);
+    let userDataStore = store.getState().authentication;
+
+    setUser(userDataStore.username);
+  };
+
+  const logout = (e) => {
+    e.preventDefault();
+    swal({
+      title: "ایا می خواهید از سایت خارج شوید؟",
+      icon: "warning",
+      buttons: ["نه", "اره"],
+    }).then((res) => {
+      if (res) {
+        localStorage.removeItem("users");
+        setIsLoggedIn(true);
+        setUser("");
+      }
+    });
   };
 
   useEffect(() => {
+    if (userToken) {
       fetchDataUser();
-  }, [getStates]);
+    }
+  }, [location.pathname, logout]);
 
   return (
     <div>
@@ -40,10 +62,10 @@ export default function HeaderDesckTop(props) {
               <Link to="/products"> تمام محصولات </Link>
             </li>
             <li>
-              <a href="#"> دیکشنری </a>
+              <Link to="/shirt"> پیراهن </Link>
             </li>
             <li>
-              <a href="#"> بلاگ </a>
+              <Link to="/tshirt"> تی شرت </Link>
             </li>
             <li>
               <a href="#"> درباره ی ما </a>
@@ -73,13 +95,12 @@ export default function HeaderDesckTop(props) {
             />
           </div>
           <div className="flex gap-2 child-hover:text-orange-500 child-hover:transition-all child-hover:duration-300">
-            {!user ? (
+            {!userToken ? (
               <>
                 <Link className="text-black/60 font-vazirBold" to="/login">
                   ورود
                 </Link>
                 <p className=" w-[30px] h-[1px] bg-black/60  rotate-90 mt-3"></p>
-
                 <Link className="text-black/60   font-vazirBold" to="/register">
                   ثبت نام
                 </Link>
@@ -87,7 +108,7 @@ export default function HeaderDesckTop(props) {
             ) : (
               <div className=" flex items-center gap-4">
                 <div className="border-2 border-black/10 text-orange-500 pr-3 pl-3 rounded-[10px] text-center pb-8 min-w-[100px] h-8">
-                  {user ? user : ""}
+                  {user}
                 </div>
                 <Link to="/usershoppingbasket">
                   <svg
@@ -96,15 +117,21 @@ export default function HeaderDesckTop(props) {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="size-6 text-black cursor-pointer hover:text-orange-500"
+                    className="size-6 text-black hover:text-orange-400"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                      d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
                     />
                   </svg>
                 </Link>
+                <button
+                  onClick={logout}
+                  className=" text-neutral-800 pb-2 hover:text-orange-500 transition-all duration-300"
+                >
+                  خروج
+                </button>
               </div>
             )}
           </div>

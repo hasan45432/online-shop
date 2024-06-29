@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 export default function HeaderDesktop() {
+  const navigate = useNavigate();
+
+  const logout = (e) => {
+    e.preventDefault();
+    swal({
+      title: "ایا می خواهید از سایت خارج شوید",
+      icon: "warning",
+      buttons: ["نه", "اره"],
+    }).then((res) => {
+      if (res) {
+        localStorage.removeItem("users");
+        navigate("/");
+      }
+    });
+  };
   return (
     <>
       <div>
@@ -103,6 +120,26 @@ export default function HeaderDesktop() {
             <Link to="/p-admin/articles" className="w-[100%]">
               مقاله ها
             </Link>
+          </li>
+          <li className="flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6 ml-2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"
+              />
+            </svg>
+
+            <button onClick={logout} className="">
+              خروج
+            </button>
           </li>
         </ul>
       </div>

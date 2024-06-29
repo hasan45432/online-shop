@@ -11,7 +11,8 @@ import Articles from "./pages/adminPanel/articles/Articles";
 import Products from "./pages/products/Products";
 import ProductInfo from "./pages/productInfo/ProductInfo";
 import UserShoppingBasket from "./pages/userShoppingBasket/UserShoppingBasket";
-
+import Tshirt from "./pages/tshirt/Tshirt";
+import Shirt from "./pages/shirt/Shirt";
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/login", element: <Login /> },
@@ -19,6 +20,8 @@ const routes = [
   { path: "/products", element: <Products /> },
   { path: "/productsInfo/:shortname", element: <ProductInfo /> },
   { path: "/usershoppingbasket", element: <UserShoppingBasket /> },
+  { path: "/tshirt", element: <Tshirt /> },
+  { path: "/shirt", element: <Shirt /> },
 
   {
     path: "/p-admin/*",

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useStore } from "react-redux";
+import { useDispatch, useStore, useSelector } from "react-redux";
 import { registerState } from "../../Redux/store/authentication";
 import { Link } from "react-router-dom";
 import Inputs from "../inputs/Inputs";
 import swal from "sweetalert";
 import { getStates } from "../../Redux/store/fetchStor";
-
+import { useNavigate } from "react-router-dom";
 export default function FormRegister() {
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
@@ -13,8 +13,12 @@ export default function FormRegister() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState(0);
 
+  const userToken = localStorage.getItem("users");
+  const shoppingBasket = useSelector((state) => state); // A
+
   const dispatch = useDispatch();
   const store = useStore();
+  const navigate = useNavigate();
 
   const register = async (e) => {
     e.preventDefault();
@@ -34,12 +38,25 @@ export default function FormRegister() {
       phone.length &&
       password.length
     ) {
-      if (password.length >= 8) {
+      if (password.length >= 8 && password.length <= 11) {
         if (phone.length === 11) {
-          let url = "http://localhost:4000/v1/auth/register";
-          await dispatch(registerState({ url, body }));
-          let registerStore = store.getState().authentication.accessToken;
-          localStorage.setItem("users", registerStore);
+          if (/^\w+@[a-zA-Z_]+\.[a-zA-Z]{2,3}$/.test(email)) {
+            let url = "http://localhost:4000/v1/auth/register";
+            await dispatch(registerState({ url, body }));
+            let registerStore = store.getState().authentication.accessToken;
+            if (registerStore !== undefined) {
+              localStorage.setItem("users", registerStore);
+            }
+            if (registerStore) {
+              navigate("/");
+            }
+          } else {
+            swal({
+              title: "ایمیل نادرست است",
+              icon: "error",
+              buttons: "ok",
+            });
+          }
         } else {
           swal({
             title: "شماره تلفن باید یازده رقم باشد",
@@ -61,12 +78,17 @@ export default function FormRegister() {
         buttons: "ok",
       });
     }
+    setUsername("");
+    setName("");
+    setEmail("");
+    setPhone("");
+    setPassword("");
   };
 
   useEffect(() => {
-    let url = "http://localhost:4000/v1/auth/me";
-    dispatch(getStates({ url }));
-
+    if (userToken) {
+      navigate("/");
+    }
     window.scroll(0, 0);
   }, []);
 
@@ -83,7 +105,7 @@ export default function FormRegister() {
             </Link>
             <Link
               to="/"
-              className="border grid  border-neutral-900 pr-4 pl-4 pt-1 pb-1 hover:bg-neutral-400 hover:text-white"
+              className="border grid sm:ml-6  border-neutral-900 pr-4 pl-4 pt-1 pb-1 hover:bg-neutral-400 hover:text-white"
             >
               HOME
             </Link>
@@ -107,30 +129,35 @@ export default function FormRegister() {
                 id={"inputEmail4"}
                 placeholder={"username"}
                 onText={(e) => setUsername(e)}
+                value={username}
               />
               <Inputs
                 type={"text"}
                 className={"form-control text-left"}
                 placeholder={"name"}
                 onText={(e) => setName(e)}
+                value={name}
               />
               <input
                 type="email"
                 className="form-control text-left w-[80%] sm:w-[60%]  mx-auto "
                 placeholder="email"
                 onInput={(e) => setEmail(e.target.value)}
+                value={email}
               />
               <input
                 type="number"
                 className="form-control text-left w-[80%] sm:w-[60%]  mx-auto "
                 placeholder="phone"
                 onInput={(e) => setPhone(e.target.value)}
+                value={phone}
               />
               <input
                 type="password"
                 className="form-control text-left w-[80%] sm:w-[60%]  mx-auto "
                 placeholder="password"
                 onInput={(e) => setPassword(e.target.value)}
+                value={password}
               />
 
               <button

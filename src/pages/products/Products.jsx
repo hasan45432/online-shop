@@ -6,6 +6,8 @@ import Product from "../../components/product/Product";
 import { getStates, createState } from "../../Redux/store/fetchStor";
 import { useDispatch, useStore } from "react-redux";
 import Alert from "react-bootstrap/Alert";
+import { useLocation } from "react-router-dom";
+import { getUserData } from "../../Redux/store/authentication";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -13,6 +15,7 @@ export default function Products() {
 
   const dispatch = useDispatch();
   const store = useStore();
+  const userToken = localStorage.getItem("users");
 
   const fetchAllProduct = async () => {
     let url = "http://localhost:4000/v1/courses";
@@ -60,7 +63,10 @@ export default function Products() {
         {filterProducts.length ? (
           ""
         ) : (
-          <Alert variant="danger" className="w-[100%] md:w-[90%] lg:w-[80%] xl:w-[70%] 2xl:w-[60%] mx-auto">
+          <Alert
+            variant="danger"
+            className="w-[100%] md:w-[90%] lg:w-[80%] xl:w-[70%] 2xl:w-[60%] mx-auto"
+          >
             هیچ محصولی پیدا نشد
           </Alert>
         )}

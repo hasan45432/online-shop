@@ -7,7 +7,7 @@ import { getStates } from "../../Redux/store/fetchStor";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-
+import { useParams } from "react-router-dom";
 export default function IndexPAdmin() {
   const dispatch = useDispatch();
   const store = useStore();
@@ -33,6 +33,15 @@ export default function IndexPAdmin() {
   };
   useEffect(() => {
     fetchData();
+  }, []);
+  const params = useParams();
+
+  useEffect(() => {
+    const adminToken = localStorage.getItem("users");
+    console.log(adminToken);
+    if (adminToken === null) {
+      navigate("/");
+    }
   }, []);
   return (
     <>

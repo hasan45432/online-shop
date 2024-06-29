@@ -17,6 +17,7 @@ export default function Inputs(props) {
           id={props.id}
           placeholder={props.placeholder}
           onInput={add}
+          value={props.value}
         />
       </div>
     </>

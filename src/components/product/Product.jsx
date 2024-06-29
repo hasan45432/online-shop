@@ -1,19 +1,53 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useStore } from "react-redux";
-import { addProductToUserBasket } from "../../Redux/store/ShoppingBasket";
+
+import { useNavigate } from "react-router-dom";
 
 export default function Product(props) {
   const dispatch = useDispatch();
+  const userToken = localStorage.getItem("users");
+  const navigate = useNavigate();
 
   const addToShoppingBasket = async (e) => {
     e.preventDefault();
-
+    console.log("asdasd");
     let body = {
       price: props.price,
     };
-    let url = `http://localhost:4000/v1/courses/${props._id}/register`;
-    await dispatch(addProductToUserBasket({ url, body }));
+    fetch(`http://localhost:4000/v1/courses/${props._id}/register`, {
+      method: "POST",
+      body: JSON.stringify(body),
+
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          swal({
+            title: "محصول مورد نظر با موفقیت به سبد خرید اضافه شد",
+            icon: "success",
+            buttons: "ok",
+          });
+          console.log(res);
+          return res.json();
+        } else {
+          swal({
+            title: "این محصول در سبد خرید شما وجود دارد ",
+            icon: "error",
+            buttons: "ok",
+          });
+          console.log(res);
+          return res.json();
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
+      console.log(props);
   };
 
   return (
@@ -33,12 +67,21 @@ export default function Product(props) {
               ${props.price}
             </p>
           </div>
-          <button
-            onClick={addToShoppingBasket}
-            className="border text-[12px] md:text-[18px] md:pb-2  font-vazirBlack pr-4 hover:text-white hover:bg-neutral-400 pl-4 pb-[5px] m-1"
-          >
-            خرید
-          </button>
+          {userToken ? (
+            <button
+              onClick={addToShoppingBasket}
+              className="border text-[12px] md:text-[18px] transition-all duration-300 md:pb-2  font-vazirBlack pr-4 hover:text-white hover:bg-neutral-400 pl-4 pb-[5px] m-1"
+            >
+              خرید
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="border text-[12px] md:text-[18px] transition-all duration-300 md:pb-2  font-vazirBlack pr-4 hover:text-white hover:bg-neutral-400 pl-4 pb-[5px] m-1"
+            >
+              خرید
+            </Link>
+          )}
         </div>
       </Link>
     </>

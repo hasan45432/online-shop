@@ -25,6 +25,12 @@ export const addProductToUserBasket = createAsyncThunk(
           });
           console.log(res);
           return res.json();
+        } else {
+          swal({
+            title: "این محصول در سبد خرید شما وجود دارد ",
+            icon: "error",
+            buttons: "ok",
+          });
         }
       })
       .then((data) => {
@@ -45,8 +51,10 @@ export const getUserProduct = createAsyncThunk(
       },
     })
       .then((res) => {
-        console.log(res);
-        return res.json();
+        if (res.ok) {
+          console.log(res);
+          return res.json();
+        }
       })
       .then((data) => {
         console.log(data);
@@ -54,8 +62,6 @@ export const getUserProduct = createAsyncThunk(
       });
   }
 );
-
-
 
 const slice = createSlice({
   name: "users",
