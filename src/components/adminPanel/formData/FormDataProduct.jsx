@@ -107,7 +107,7 @@ const FormDataProduct = () => {
       <div>
         <div className=" mx-auto mt-10">
           <form className="flex  flex-col mx-auto xl:flex 2xl:flex-row w-[95%] ">
-            <div className="sm:w-[80%]   xl:w-[50%] w-[100%] flex flex-col items-center gap-4">
+            <div className="sm:w-[80%] mx-auto   xl:w-[50%] w-[100%] flex flex-col items-center gap-4">
               <Inputs
                 type={"text"}
                 className={"form-control placeholder-text text-[12px]"}
